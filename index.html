@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De Derde Linden — Holding Platform</title>
+  <style>
+    :root {
+      --zwart: #0a0a0a;
+      --wit: #f0ede8;
+      --goud: #c9a84c;
+      --goud-licht: #e8c96a;
+      --goud-donker: #9a7a2e;
+      --grijs: #181818;
+      --grijs-mid: #242424;
+      --grijs-licht: #333;
+      --tekst-dim: #888;
+      --tekst-mid: #aaa;
+      --groen: #4caf82;
+      --oranje: #e07b39;
+      --rood: #c94c4c;
+      --blauw: #4c8fc9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--zwart);
+      color: var(--wit);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.97);
+      border-bottom: 1px solid #222;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      height: 54px;
+      backdrop-filter: blur(12px);
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--goud);
+      font-weight: bold;
+      white-space: nowrap;
+      font-family: 'Arial', sans-serif;
+    }
+    nav a {
+      color: var(--tekst-dim);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: var(--goud); }
+    nav .spacer { flex: 1; min-width: 8px; }
+    nav .datum {
+      font-size: 0.66rem;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+      white-space: nowrap;
+    }
+
+    /* ─── SECTIES ─── */
+    section {
+      padding: 110px 10vw 90px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--goud) 30%, var(--goud-licht) 50%, var(--goud) 70%, transparent 100%);
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--goud);
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: normal;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      margin-bottom: 0.4rem;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+      color: var(--goud);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      font-weight: normal;
+    }
+    .hero-desc {
+      max-width: 640px;
+      margin: 0 auto 3.5rem;
+      color: var(--tekst-mid);
+      font-size: 1.05rem;
+      font-family: 'Arial', sans-serif;
+      line-height: 1.9;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .getal {
+      display: block;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--goud);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+    .hero-stat .label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+      margin-top: 0.3rem;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--grijs-licht);
+      color: var(--tekst-mid);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.45em 1.3em;
+      font-family: 'Arial', sans-serif;
+      border-radius: 2px;
+    }
+    .hero-badge.actief { border-color: var(--goud); color: var(--goud); }
+
+    /* ─── SECTIE HEADERS ─── */
+    .sectie-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--goud);
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: normal;
+      margin-bottom: 0.4rem;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+    .goud-lijn {
+      width: 48px;
+      height: 2px;
+      background: var(--goud);
+      margin: 1.2rem 0 1.8rem;
+    }
+    .sectie-intro {
+      max-width: 680px;
+      color: var(--tekst-mid);
+      font-family: 'Arial', sans-serif;
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── STATUS BANNER ─── */
+    .status-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(76,175,130,0.08);
+      border: 1px solid rgba(76,175,130,0.25);
+      border-left: 3px solid var(--groen);
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      margin-bottom: 2.5rem;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tekst-mid);
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      background: var(--groen);
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(76,175,130,0.6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .status-banner strong { color: var(--groen); }
+
+    /* ─── GRIDS ─── */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── KAARTEN ─── */
+    .kaart {
+      background: var(--grijs);
+      border: 1px solid #2a2a2a;
+      padding: 1.4rem;
+      border-radius: 4px;
+    }
+    .kaart.live-rand { border-color: rgba(76,175,130,0.4); }
+    .kaart.goud-rand { border-color: rgba(201,168,76,0.35); }
+    .kaart.oranje-rand { border-top: 2px solid var(--oranje); }
+    .kaart.groen-rand { border-top: 2px solid var(--groen); }
+    .kaart.blauw-rand { border-color: rgba(76,143,201,0.35); }
+    .k-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 0.5rem;
+      color: var(--tekst-dim);
+    }
+    .k-label.live-kleur { color: var(--groen); }
+    .k-label.goud-kleur { color: var(--goud); }
+    .k-label.oranje-kleur { color: var(--oranje); }
+    .k-titel { font-size: 1rem; margin-bottom: 0.4rem; }
+    .k-tekst {
+      font-size: 0.8rem;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+      line-height: 1.65;
+    }
+    .k-tekst ul { list-style: none; padding: 0; }
+    .k-tekst ul li { padding-left: 1em; position: relative; margin-bottom: 0.2rem; }
+    .k-tekst ul li::before { content: '—'; position: absolute; left: 0; color: var(--goud-donker); }
+
+    /* ─── HIGHLIGHT BOX ─── */
+    .highlight-box {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-left: 3px solid var(--goud);
+      padding: 1.2rem 1.5rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.88rem;
+      color: var(--tekst-mid);
+      line-height: 1.8;
+    }
+    .highlight-box strong { color: var(--wit); }
+    .highlight-box.rood-box {
+      background: rgba(201,76,76,0.05);
+      border-color: rgba(201,76,76,0.2);
+      border-left-color: var(--rood);
+    }
+    .highlight-box.groen-box {
+      background: rgba(76,175,130,0.05);
+      border-color: rgba(76,175,130,0.2);
+      border-left-color: var(--groen);
+    }
+
+    /* ─── HOLDING TREE ─── */
+    .holding-tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 0 0 2rem;
+    }
+    .h-node {
+      background: var(--grijs);
+      border: 1px solid var(--grijs-licht);
+      padding: 1rem 1.5rem;
+      min-width: 220px;
+      max-width: 300px;
+      text-align: center;
+      border-radius: 4px;
+    }
+    .h-node.top {
+      border-color: var(--goud);
+      background: linear-gradient(135deg, #1a1408 0%, var(--grijs) 100%);
+    }
+    .h-node .h-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 0.25rem;
+    }
+    .h-node.top .h-label { color: var(--goud-donker); }
+    .h-node .h-naam { font-size: 0.95rem; }
+    .h-node.top .h-naam { color: var(--goud); font-size: 1.05rem; }
+    .h-node .h-pct { font-size: 0.7rem; color: var(--tekst-dim); font-family: 'Arial', sans-serif; margin-top: 0.15rem; }
+    .tree-conn { width: 1px; height: 28px; background: var(--grijs-licht); }
+    .tree-row { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ─── BEDRIJVEN GRID ─── */
+    .bedrijf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.8rem;
+    }
+    .bedrijf-kaart {
+      background: var(--grijs);
+      border: 1px solid #2a2a2a;
+      padding: 0.85rem 1rem;
+      border-radius: 4px;
+    }
+    .bedrijf-kaart.nieuw { border-color: rgba(201,168,76,0.3); }
+    .b-cat { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tekst-dim); font-family: 'Arial', sans-serif; margin-bottom: 0.25rem; }
+    .bedrijf-kaart.nieuw .b-cat { color: var(--goud); }
+    .b-naam { font-size: 0.85rem; }
+
+    /* ─── TOEGANG ─── */
+    .toegang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .toegang-kaart { background: var(--grijs); border: 1px solid #2a2a2a; padding: 1.1rem; border-radius: 4px; }
+    .t-persoon { font-size: 1rem; margin-bottom: 0.2rem; }
+    .t-sub { font-size: 0.72rem; color: var(--tekst-dim); font-family: 'Arial', sans-serif; margin-bottom: 0.6rem; }
+    .t-level {
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'Arial', sans-serif; padding: 0.25em 0.8em; border-radius: 2px; display: inline-block;
+    }
+    .t-level.alles { background: rgba(201,168,76,0.15); color: var(--goud); }
+    .t-level.deel { background: rgba(76,143,201,0.15); color: var(--blauw); }
+    .t-level.vestiging { background: rgba(76,175,130,0.15); color: var(--groen); }
+
+    /* ─── FASE CONTAINER ─── */
+    .fases { display: flex; flex-direction: column; gap: 1rem; }
+    .fase-blok {
+      display: flex;
+      gap: 0;
+      background: var(--grijs);
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .fase-blok.actief { border-color: rgba(201,168,76,0.4); }
+    .fase-blok.parallel { border-color: rgba(76,143,201,0.3); }
+    .fase-blok.later { border-color: #2a2a2a; opacity: 0.75; }
+    .fase-nr-blok {
+      width: 72px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      border-right: 1px solid #2a2a2a;
+    }
+    .fase-blok.actief .fase-nr-blok { background: rgba(201,168,76,0.05); border-right-color: rgba(201,168,76,0.2); }
+    .fase-blok.parallel .fase-nr-blok { background: rgba(76,143,201,0.05); border-right-color: rgba(76,143,201,0.15); }
+    .fase-nr-num {
+      font-size: 1.8rem;
+      color: #2a2a2a;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+    }
+    .fase-blok.actief .fase-nr-num { color: var(--goud); }
+    .fase-blok.parallel .fase-nr-num { color: var(--blauw); }
+    .fase-inhoud { padding: 1.3rem 1.5rem 1.3rem 1.5rem; flex: 1; }
+    .fase-kop {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .fase-naam { font-size: 1.05rem; }
+    .tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      padding: 0.2em 0.7em;
+      border-radius: 2px;
+    }
+    .tag.nu { background: rgba(201,168,76,0.15); color: var(--goud); border: 1px solid rgba(201,168,76,0.3); }
+    .tag.parallel-tag { background: rgba(76,143,201,0.12); color: var(--blauw); border: 1px solid rgba(76,143,201,0.25); }
+    .tag.later-tag { background: rgba(136,136,136,0.08); color: var(--tekst-dim); border: 1px solid #333; }
+    .tag.live { background: rgba(76,175,130,0.12); color: var(--groen); border: 1px solid rgba(76,175,130,0.25); }
+    .fase-meta-lijn {
+      font-size: 0.73rem;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 0.9rem;
+    }
+    .fase-lijst {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.3rem 1.5rem;
+    }
+    .fase-lijst li {
+      font-size: 0.78rem;
+      color: var(--tekst-mid);
+      font-family: 'Arial', sans-serif;
+      padding-left: 1em;
+      position: relative;
+    }
+    .fase-lijst li::before { content: '—'; position: absolute; left: 0; color: var(--goud-donker); }
+    .fase-rens-box {
+      margin-top: 1rem;
+      background: rgba(201,168,76,0.04);
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 0.7rem 1rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+    }
+    .fase-rens-box span { color: var(--goud); }
+    .bouw-test-split {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .split-blok {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid #2a2a2a;
+      padding: 0.8rem 1rem;
+      border-radius: 3px;
+    }
+    .split-blok .split-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      color: var(--tekst-dim);
+      margin-bottom: 0.4rem;
+    }
+    .split-blok.bouw-blok { border-color: rgba(201,168,76,0.2); }
+    .split-blok.bouw-blok .split-label { color: var(--goud); }
+    .split-blok.test-blok { border-color: rgba(76,143,201,0.2); }
+    .split-blok.test-blok .split-label { color: var(--blauw); }
+
+    /* ─── TIJDLIJN ─── */
+    .tijdlijn-balk {
+      margin: 2rem 0;
+      position: relative;
+    }
+    .tl-rij {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0.6rem 1rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .tl-maand {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tekst-dim);
+      font-family: 'Arial', sans-serif;
+      text-align: right;
+    }
+    .tl-segment {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .tl-blok {
+      font-size: 0.72rem;
+      font-family: 'Arial', sans-serif;
+      padding: 0.3em 0.8em;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .tl-blok.f1 { background: rgba(201,168,76,0.15); color: var(--goud); border: 1px solid rgba(201,168,76,0.3); }
+    .tl-blok.f2 { background: rgba(76,143,201,0.12); color: var(--blauw); border: 1px solid rgba(76,143,201,0.25); }
+    .tl-blok.f2b { background: rgba(76,143,201,0.06); color: #7aabdb; border: 1px dashed rgba(76,143,201,0.2); }
+    .tl-blok.f3 { background: rgba(76,175,130,0.12); color: var(--groen); border: 1px solid rgba(76,175,130,0.25); }
+    .tl-blok.f4 { background: rgba(224,123,57,0.12); color: var(--oranje); border: 1px solid rgba(224,123,57,0.25); }
+    .tl-blok.f5 { background: rgba(136,136,136,0.08); color: var(--tekst-dim); border: 1px solid #333; }
+    .tl-blok.deadline { background: rgba(201,76,76,0.15); color: #e07a7a; border: 1px solid rgba(201,76,76,0.3); font-weight: bold; }
+
+    /* ─── SYSTEMEN TABEL ─── */
+    .sys-tabel {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+    }
+    .sys-tabel th {
+      text-align: left;
+      font-size: 0.63rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tekst-dim);
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--grijs-licht);
+    }
+    .sys-tabel td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #1c1c1c;
+      color: var(--tekst-mid);
+      vertical-align: top;
+    }
+    .sys-tabel tr:hover td { background: rgba(255,255,255,0.02); }
+    .status-ja { color: var(--groen); font-weight: bold; }
+    .status-nee { color: var(--rood); }
+    .status-later { color: var(--oranje); }
+    .status-koppelen { color: var(--blauw); }
+
+    /* ─── KOSTEN TABEL ─── */
+    .kosten-tabel {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+    }
+    .kosten-tabel th {
+      text-align: left;
+      font-size: 0.63rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tekst-dim);
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--grijs-licht);
+    }
+    .kosten-tabel td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid #1c1c1c;
+      color: var(--tekst-mid);
+    }
+    .kosten-tabel .totaal-rij td {
+      border-top: 1px solid var(--grijs-licht);
+      border-bottom: none;
+      color: var(--wit);
+      font-weight: bold;
+      padding-top: 0.9rem;
+    }
+    .kosten-tabel .prijs-col { color: var(--goud); }
+    .kosten-tabel .totaal-rij .prijs-col { color: var(--goud-licht); font-size: 1rem; }
+
+    /* ─── HOSTING MODEL ─── */
+    .hosting-diagram {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      background: var(--grijs);
+      border: 1px solid var(--grijs-licht);
+      padding: 2rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+    }
+    .hosting-blok {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      padding: 1.2rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .hosting-blok.team-blok { border-color: var(--goud); }
+    .hosting-blok .hb-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .hosting-blok .hb-naam { font-size: 0.88rem; margin-bottom: 0.3rem; }
+    .hosting-blok .hb-sub { font-size: 0.7rem; color: var(--tekst-dim); font-family: 'Arial', sans-serif; }
+    .hosting-pijl { text-align: center; color: var(--grijs-licht); font-size: 1.5rem; }
+
+    /* ─── AI KOSTEN ─── */
+    .ai-model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .ai-model-kaart {
+      background: var(--grijs);
+      border: 1px solid #2a2a2a;
+      padding: 1.2rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .ai-model-kaart.premium { border-color: rgba(201,168,76,0.3); }
+    .ai-model-kaart.basis { border-color: rgba(76,175,130,0.2); }
+    .am-naam { font-size: 0.85rem; margin-bottom: 0.2rem; }
+    .am-prijs { font-size: 1.4rem; color: var(--goud); font-family: 'Arial', sans-serif; margin: 0.4rem 0 0.2rem; }
+    .am-sub { font-size: 0.68rem; color: var(--tekst-dim); font-family: 'Arial', sans-serif; }
+    .am-gebruik { font-size: 0.72rem; color: var(--tekst-mid); font-family: 'Arial', sans-serif; margin-top: 0.5rem; }
+
+    /* ─── ACTIES ─── */
+    .actie-blokken { display: flex; flex-direction: column; gap: 2rem; }
+    .actie-groep {
+      background: var(--grijs);
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .actie-kop {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.3rem;
+      border-bottom: 1px solid #2a2a2a;
+      background: #141414;
+    }
+    .actie-kop .deadline-badge {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: 'Arial', sans-serif;
+      padding: 0.2em 0.8em;
+      border-radius: 2px;
+    }
+    .actie-kop .deadline-badge.kritiek { background: rgba(201,76,76,0.15); color: #e07a7a; border: 1px solid rgba(201,76,76,0.3); }
+    .actie-kop .deadline-badge.normaal { background: rgba(224,123,57,0.12); color: var(--oranje); border: 1px solid rgba(224,123,57,0.25); }
+    .actie-kop .deadline-badge.later-d { background: rgba(76,143,201,0.1); color: var(--blauw); border: 1px solid rgba(76,143,201,0.2); }
+    .actie-kop-titel { font-size: 0.9rem; font-family: 'Arial', sans-serif; }
+    .actie-items { padding: 0.5rem 0; }
+    .actie-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.6rem 1.3rem;
+      border-bottom: 1px solid #1a1a1a;
+      font-size: 0.82rem;
+      font-family: 'Arial', sans-serif;
+      color: var(--tekst-mid);
+    }
+    .actie-item:last-child { border-bottom: none; }
+    .check {
+      width: 16px; height: 16px;
+      border: 1px solid var(--grijs-licht);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ─── ROI ─── */
+    .roi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+    .roi-kaart {
+      background: var(--grijs);
+      border: 1px solid #2a2a2a;
+      padding: 1.4rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .roi-kaart.positief { border-top: 2px solid var(--groen); }
+    .roi-getal { font-size: 2rem; color: var(--goud); font-family: 'Arial', sans-serif; margin: 0.5rem 0 0.3rem; }
+    .roi-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tekst-dim); font-family: 'Arial', sans-serif; }
+    .roi-tekst { font-size: 0.75rem; color: var(--tekst-mid); font-family: 'Arial', sans-serif; margin-top: 0.4rem; }
+
+    /* ─── VERGELIJK ─── */
+    .vergelijk-tabel {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.82rem;
+    }
+    .vergelijk-tabel th {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.63rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tekst-dim);
+      border-bottom: 1px solid var(--grijs-licht);
+    }
+    .vergelijk-tabel th.eigen-kol { color: var(--goud); }
+    .vergelijk-tabel td {
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid #1a1a1a;
+      color: var(--tekst-mid);
+      vertical-align: middle;
+    }
+    .vergelijk-tabel td.aspect { color: var(--tekst-dim); font-size: 0.75rem; }
+    .vergelijk-tabel td.eigen-td { color: var(--wit); }
+    .v-ja { color: var(--groen); }
+    .v-nee { color: var(--rood); }
+    .v-deels { color: var(--oranje); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 3.5rem 2rem;
+      background: var(--grijs);
+      border-top: 1px solid #222;
+    }
+    .f-logo { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--goud); font-family: 'Arial', sans-serif; margin-bottom: 0.5rem; }
+    .f-sub { font-size: 0.75rem; color: var(--tekst-dim); font-family: 'Arial', sans-serif; margin-bottom: 0.3rem; }
+    .f-datum { font-size: 0.68rem; color: #444; font-family: 'Arial', sans-serif; }
+
+    .divider {
+      display: flex; align-items: center; gap: 1.5rem; margin: 3rem 0 2rem;
+    }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--grijs-licht); }
+    .divider span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--goud); font-family: 'Arial', sans-serif; white-space: nowrap; }
+
+    @media (max-width: 768px) {
+      section { padding: 90px 5vw 60px; }
+      nav { overflow-x: auto; }
+      nav .datum { display: none; }
+      .hosting-diagram { grid-template-columns: 1fr; }
+      .hosting-pijl { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATIE ─── -->
+<nav>
+  <div class="logo">De Derde Linden</div>
+  <a href="#stand">Nu al</a>
+  <a href="#structuur">Structuur</a>
+  <a href="#pijnpunten">Pijnpunten</a>
+  <a href="#strategie">Strategie</a>
+  <a href="#fases">Fases</a>
+  <a href="#tijdlijn">Tijdlijn</a>
+  <a href="#systemen">Systemen</a>
+  <a href="#hosting">Hosting</a>
+  <a href="#kosten">Kosten</a>
+  <a href="#roi">ROI</a>
+  <a href="#acties">Acties</a>
+  <div class="spacer"></div>
+  <div class="datum">13 april 2026</div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-eyebrow">De Derde Linden Holding — Platform Presentatie</div>
+  <h1 class="hero-title">Één platform.<br/>Alle bedrijven.</h1>
+  <div class="hero-subtitle">Gebouwd als eigendom, niet als abonnement.</div>
+  <p class="hero-desc">
+    Een volledig geïntegreerd bedrijfsplatform voor de gehele holding van Rens van der Linden.
+    Van kassasysteem tot financiën, HR tot AI-agent. Elk systeem eigendom van de holding —
+    geen vendor lock-in, geen maandelijkse SaaS-licenties, geen afhankelijkheid van derden.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="getal">11+</span>
+      <span class="label">Bedrijven</span>
+    </div>
+    <div class="hero-stat">
+      <span class="getal">5</span>
+      <span class="label">Bouwfases</span>
+    </div>
+    <div class="hero-stat">
+      <span class="getal">22u</span>
+      <span class="label">Besparing per week</span>
+    </div>
+    <div class="hero-stat">
+      <span class="getal">Sept</span>
+      <span class="label">Deadline Foods & Goods</span>
+    </div>
+  </div>
+  <div class="hero-badges">
+    <span class="hero-badge actief">AI Agent live</span>
+    <span class="hero-badge actief">Telegram operationeel</span>
+    <span class="hero-badge">Hostinger Cloud</span>
+    <span class="hero-badge">Synology Backup</span>
+    <span class="hero-badge">Managed Hosting</span>
+    <span class="hero-badge">AVG-proof</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- WAT STAAT ER AL -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="stand">
+  <div class="sectie-label">00 — Huidige stand</div>
+  <h2>Wat er al staat</h2>
+  <div class="goud-lijn"></div>
+
+  <div class="status-banner">
+    <div class="status-dot"></div>
+    <div>
+      <strong>AI Agent operationeel</strong> &nbsp;—&nbsp;
+      Claude Sonnet 4.6 draait live. Rens communiceert via Telegram of terminal.
+      Gedeelde context zorgt voor naadloze continuïteit tussen alle sessies.
+    </div>
+  </div>
+
+  <p class="sectie-intro">
+    Dit zijn geen plannen — dit staat er vandaag al.
+    De basis is gelegd en in gebruik.
+  </p>
+
+  <div class="grid-3">
+    <div class="kaart live-rand">
+      <div class="k-label live-kleur">Live ✓</div>
+      <div class="k-titel">Claude AI Agent</div>
+      <div class="k-tekst">
+        Claude Sonnet 4.6 draait als persoonlijke assistent van Rens.
+        Voert opdrachten uit, schrijft code, analyseert data, geeft strategisch advies — 24/7.
+      </div>
+    </div>
+    <div class="kaart live-rand">
+      <div class="k-label live-kleur">Live ✓</div>
+      <div class="k-titel">Telegram Bot</div>
+      <div class="k-tekst">
+        Directe verbinding vanuit Telegram naar de AI agent. Rens stuurt berichten,
+        agent verwerkt en antwoordt. Lange taken lopen asynchroon.
+      </div>
+    </div>
+    <div class="kaart live-rand">
+      <div class="k-label live-kleur">Live ✓</div>
+      <div class="k-titel">Shared Context Bridge</div>
+      <div class="k-tekst">
+        Telegram en terminal delen dezelfde geheugenlaag. Gesprekken worden
+        nooit onderbroken door context-verlies — elke sessie pakt exact op waar de vorige eindigde.
+      </div>
+    </div>
+    <div class="kaart live-rand">
+      <div class="k-label live-kleur">Live ✓</div>
+      <div class="k-titel">Obsidian Vaults</div>
+      <div class="k-tekst">
+        7 vaults aangemaakt — één per bedrijfsunit. Wings, Foods & Goods, Pizza Bakkers,
+        Groothandel, Fitness One, Vastgoed, Holding overkoepelend.
+      </div>
+    </div>
+    <div class="kaart live-rand">
+      <div class="k-label live-kleur">Live ✓</div>
+      <div class="k-titel">Holding API Server</div>
+      <div class="k-tekst">
+        Interne API draait op poort 3334. Ontvangt berichten, verwerkt context,
+        stuurt antwoorden terug. Stabiel na fix van crash-loop.
+      </div>
+    </div>
+    <div class="kaart goud-rand">
+      <div class="k-label goud-kleur">Gereed</div>
+      <div class="k-titel">HTML Presentatie</div>
+      <div class="k-tekst">
+        Deze presentatie — volledig up-to-date met alle besluiten, fases, kosten en actiepunten.
+        Toegankelijk via Cloudflare tunnel voor iedereen.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HOLDINGSTRUCTUUR -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="structuur">
+  <div class="sectie-label">01 — Holdingstructuur</div>
+  <h2>De organisatie</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    De Derde Linden Holding is de overkoepelende structuur met meerdere tussenholdings en operationele entiteiten.
+    Elk bedrijf krijgt zijn eigen module, vault en dashboard-laag.
+  </p>
+
+  <div class="holding-tree">
+    <div class="h-node top">
+      <div class="h-label">Top holding</div>
+      <div class="h-naam">De Derde Linden Holding</div>
+      <div class="h-pct">100% eigendom</div>
+    </div>
+    <div class="tree-conn"></div>
+    <div class="tree-row">
+      <div class="h-node">
+        <div class="h-label">Tussenholding</div>
+        <div class="h-naam">DDL/FC</div>
+        <div class="h-pct">33.33%</div>
+      </div>
+      <div class="h-node">
+        <div class="h-label">Tussenholding</div>
+        <div class="h-naam">DDL Universa</div>
+        <div class="h-pct">100%</div>
+      </div>
+      <div class="h-node">
+        <div class="h-label">Tussenholding</div>
+        <div class="h-naam">Linden/Mayor</div>
+        <div class="h-pct">50%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Operationele entiteiten</span></div>
+
+  <div class="bedrijf-grid">
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Horeca</div>
+      <div class="b-naam">Wings Paradise Den Haag</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Horeca</div>
+      <div class="b-naam">Wings Paradise Rotterdam</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Horeca</div>
+      <div class="b-naam">Wings Reguliers</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Horeca</div>
+      <div class="b-naam">Wings Master 1 & 2</div>
+    </div>
+    <div class="bedrijf-kaart nieuw">
+      <div class="b-cat">Horeca — nieuw</div>
+      <div class="b-naam">Wings Breda</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Horeca</div>
+      <div class="b-naam">Wings Franchise</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Horeca</div>
+      <div class="b-naam">Pizza Bakkers Arena</div>
+    </div>
+    <div class="bedrijf-kaart nieuw">
+      <div class="b-cat">Supermarkt — nieuw sept</div>
+      <div class="b-naam">Foods & Goods IJburg</div>
+    </div>
+    <div class="bedrijf-kaart nieuw">
+      <div class="b-cat">Supermarkt — later</div>
+      <div class="b-naam">Foods & Goods 2</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Fitness</div>
+      <div class="b-naam">Fitness One</div>
+    </div>
+    <div class="bedrijf-kaart">
+      <div class="b-cat">Vastgoed</div>
+      <div class="b-naam">Vastgoedportfolio</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Toegangslagen</span></div>
+
+  <div class="toegang-grid">
+    <div class="toegang-kaart">
+      <div class="t-persoon">Rens van der Linden</div>
+      <div class="t-sub">Eigenaar / directeur</div>
+      <div class="t-level alles">Volledige toegang</div>
+    </div>
+    <div class="toegang-kaart">
+      <div class="t-persoon">Elton &amp; Marcello</div>
+      <div class="t-sub">Formule-managers horeca</div>
+      <div class="t-level deel">Eigen formule</div>
+    </div>
+    <div class="toegang-kaart">
+      <div class="t-persoon">Youri &amp; Marcella</div>
+      <div class="t-sub">Managers Foods &amp; Goods</div>
+      <div class="t-level deel">Eigen formule</div>
+    </div>
+    <div class="toegang-kaart">
+      <div class="t-persoon">Franchise-nemers</div>
+      <div class="t-sub">Zelfstandige exploitanten</div>
+      <div class="t-level vestiging">Eigen vestiging</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Dashboard inloggen via Speakap (SSO).</strong>
+    Rens wil op een icoontje klikken in Speakap → dashboard opent. Klikken op omzet → naar formule → naar vestiging.
+    Dropdown-menu per vestiging of per formule. Speakap SSO koppeling staat op de technische roadmap.
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PIJNPUNTEN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="pijnpunten">
+  <div class="sectie-label">02 — Waarom dit project</div>
+  <h2>De pijnpunten</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Rens heeft dit zelf ingevuld in de intake. Dit zijn zijn woorden, zijn situatie.
+    De aanleiding voor het hele platform.
+  </p>
+
+  <div class="highlight-box rood-box" style="margin-bottom:2rem;">
+    <strong>"Het is de grootste amateuristische bende die je kan bedenken."</strong><br/>
+    — Rens van der Linden, intake april 2026
+  </div>
+
+  <div class="grid-3">
+    <div class="kaart">
+      <div class="k-label oranje-kleur">Tijdsverlies #1</div>
+      <div class="k-titel" style="font-size:2rem;color:var(--goud);font-family:'Arial',sans-serif;">22 uur</div>
+      <div class="k-tekst" style="margin-top:0.4rem;">
+        Per week verspild aan handmatig werk:<br/>
+        <ul>
+          <li>Rens: ~14 uur (betalingen, controles, navraag)</li>
+          <li>Wendy: 8 uur (facturen, bonnetjes verwerken)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label oranje-kleur">Systemen #2</div>
+      <div class="k-titel">Nul koppelingen</div>
+      <div class="k-tekst">
+        Elk systeem staat los. Exact Online, Loket, Daywise, Speakap, Lightspeed, Shiftbase, Power BI —
+        geen enkel systeem praat met een ander. Alles gaat handmatig over.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label oranje-kleur">Overzicht #3</div>
+      <div class="k-titel">Blind varen</div>
+      <div class="k-tekst">
+        Maandelijkse rapporten van de boekhouder komen altijd een maand te laat.
+        Rens heeft geen realtime inzicht in omzet, marge of loonkosten over zijn 11 bedrijven.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label oranje-kleur">HR #4</div>
+      <div class="k-titel">Groei naar 140+ medewerkers</div>
+      <div class="k-tekst">
+        Nu ~60 medewerkers. Eind 2026 groei naar 140+. Huidige HR-processen (Loket, Shiftbase)
+        zijn niet schaalbaar, niet gekoppeld, en niet eigendom.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label oranje-kleur">Afhankelijkheid #5</div>
+      <div class="k-titel">Vendor lock-in overal</div>
+      <div class="k-tekst">
+        Exact Online, Loket, Shiftbase, Power BI — maandelijkse kosten voor data die van Rens is,
+        maar in systemen van anderen zit. Bij opzegging: data kwijt of exportproblemen.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label oranje-kleur">Beveiliging #6</div>
+      <div class="k-tekst" style="margin-top:0.3rem;">
+        <ul>
+          <li>Medewerkers mogen niet bij eigen HR-dossier</li>
+          <li>Loonstroken moeten op tijd</li>
+          <li>AVG-proof verplicht</li>
+          <li>Geen datalekken — financiële gegevens van 11 BV's</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box groen-box" style="margin-top:2rem;">
+    <strong>Wanneer is het systeem geslaagd?</strong><br/>
+    "Rens kan iedere ochtend zien hoe hij er voor staat, waar hij moet ingrijpen, waar hij impact kan maken,
+    en welke vestiging hij die dag moet bezoeken." — bewijscriterium intake
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- STRATEGIE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="strategie">
+  <div class="sectie-label">03 — Aanpak</div>
+  <h2>De strategie</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Eén kernprincipe stuurt de hele bouwvolgorde. Alles is erop gebouwd.
+  </p>
+
+  <div class="highlight-box" style="font-size:1rem;padding:1.5rem 2rem;margin-bottom:2.5rem;">
+    <strong>Horeca = testomgeving. Foods &amp; Goods = productie.</strong><br/><br/>
+    We bouwen alles eerst op de horeca (Wings + Pizza Bakkers). Die data is er al, de operatie loopt,
+    we kunnen fouten maken zonder catastrofale gevolgen. Als het werkt op horeca — bewezen, getest, stabiel —
+    dan draait Foods &amp; Goods op dag 1 op een systeem dat al klopt. <strong>Geen experiment
+    bij de opening van het grootste project.</strong>
+  </div>
+
+  <div class="grid-3">
+    <div class="kaart">
+      <div class="k-label goud-kleur">Principe 1</div>
+      <div class="k-titel">Horeca eerst</div>
+      <div class="k-tekst">
+        Wings en Pizza Bakkers als testbed. Echte transacties, echte data, echte fouten die we kunnen fixen
+        in een omgeving waar de druk lager is dan bij de supermarktopening.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Principe 2</div>
+      <div class="k-titel">Bouw / Test split</div>
+      <div class="k-tekst">
+        Bouw = alle 3 developers vol gas. Test = 1 developer monitort en fixt,
+        de andere 2 werken al door naar de volgende fase. Zo winnen we weken zonder kwaliteitsverlies.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Principe 3</div>
+      <div class="k-titel">September = ononderhandelbaar</div>
+      <div class="k-tekst">
+        Foods &amp; Goods IJburg opent september 2026. Alles is ingericht op die deadline.
+        HR bewust naar Q4 verschoven om de prioriteit te beschermen.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Principe 4</div>
+      <div class="k-titel">Eigendom boven abonnement</div>
+      <div class="k-tekst">
+        Elk systeem dat we bouwen is van de holding. Rens betaalt nooit meer licenties
+        voor data die van hem is. Na jaar 2: externe kosten &lt;€200/maand.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Principe 5</div>
+      <div class="k-titel">Kwaliteit boven kosten in AI</div>
+      <div class="k-tekst">
+        Slimme model-routing: eenvoudige taken via goedkoper model (Haiku),
+        complexe analyses via Sonnet. Rens merkt geen verschil — maar kosten gaan omlaag.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Principe 6</div>
+      <div class="k-titel">Internationaal en franchise-ready</div>
+      <div class="k-tekst">
+        Elk systeem wordt gebouwd met schaal in gedachten. POS, HR, dashboard —
+        allemaal geschikt voor meerdere landen, meerdere franchise-nemers.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FASES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="fases">
+  <div class="sectie-label">04 — Plan van aanpak</div>
+  <h2>De fases</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Definitieve fase-indeling, vastgelegd 13 april 2026. Inclusief bouw/test split per fase
+    zodat drie developers optimaal parallel werken.
+  </p>
+
+  <div class="fases">
+
+    <!-- FASE 1 -->
+    <div class="fase-blok actief">
+      <div class="fase-nr-blok"><div class="fase-nr-num">1</div></div>
+      <div class="fase-inhoud">
+        <div class="fase-kop">
+          <div class="fase-naam">Fundament &amp; Infrastructuur</div>
+          <span class="tag nu">Nu bezig</span>
+        </div>
+        <div class="fase-meta-lijn">14 april → ~2 mei 2026 &nbsp;·&nbsp; 3 developers, vol gas &nbsp;·&nbsp; 2-3 weken</div>
+        <ul class="fase-lijst">
+          <li>VPS inrichten op Hostinger</li>
+          <li>VPN setup via Hostinger</li>
+          <li>Synology NAS koppeling als backup</li>
+          <li>Domeinen + DNS inrichten</li>
+          <li>Obsidian Vaults live (alle bedrijfsunits)</li>
+          <li>Claude AI agent volledig operationeel</li>
+          <li>Telegram bot stabiel voor Rens</li>
+          <li>Git repository structuur</li>
+          <li>CI/CD pipeline</li>
+          <li>Monitoring + alerts</li>
+        </ul>
+        <div class="fase-rens-box">
+          <span>Wat Rens moet leveren vóór 14 april:</span>
+          Hostinger account aanmaken &nbsp;·&nbsp;
+          Domein + DNS toegang &nbsp;·&nbsp;
+          Lightspeed account actie starten &nbsp;·&nbsp;
+          Lijst alle locaties met adressen
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2A -->
+    <div class="fase-blok actief">
+      <div class="fase-nr-blok"><div class="fase-nr-num">2A</div></div>
+      <div class="fase-inhoud">
+        <div class="fase-kop">
+          <div class="fase-naam">Horeca Bouw — Wings + Pizza Bakkers</div>
+          <span class="tag nu">Start mei</span>
+        </div>
+        <div class="fase-meta-lijn">5 mei → ~30 mei 2026 &nbsp;·&nbsp; 3 developers, vol gas &nbsp;·&nbsp; ~4 weken</div>
+        <ul class="fase-lijst">
+          <li>Lightspeed Restaurant koppeling (alle horeca-vestigingen)</li>
+          <li>Eigen voorraadsysteem horeca (Wings + Pizza Bakkers)</li>
+          <li>Financieel dashboard basis — omzet, kosten, marge per vestiging</li>
+          <li>KPI's: dagomzet, bezetting, gem. besteding, loonsom %</li>
+          <li>Rolgebaseerde toegang (Rens alles, Elton/Marcello hun deel)</li>
+        </ul>
+        <div class="fase-rens-box">
+          <span>Wat Rens moet leveren vóór 1 mei:</span>
+          Exact Online export of login-toegang &nbsp;·&nbsp;
+          Lijst bankrekeningen per BV/entiteit &nbsp;·&nbsp;
+          Contact boekhouder voor afstemming &nbsp;·&nbsp;
+          BTW-structuur per entiteit
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2B -->
+    <div class="fase-blok parallel">
+      <div class="fase-nr-blok"><div class="fase-nr-num">2B</div></div>
+      <div class="fase-inhoud">
+        <div class="fase-kop">
+          <div class="fase-naam">Horeca Test &amp; Validatie</div>
+          <span class="tag parallel-tag">Test + Parallel</span>
+        </div>
+        <div class="fase-meta-lijn">1 juni → ~20 juni 2026 &nbsp;·&nbsp; 1 dev test/fixt, 2 devs werken door naar Fase 3</div>
+        <div class="bouw-test-split">
+          <div class="split-blok bouw-blok">
+            <div class="split-label">Dev 1 — Monitoren &amp; fixen</div>
+            <div class="k-tekst">Horeca systeem testen met echte data. Bugs fixen. KPI's valideren. Lightspeed-koppeling stabiel maken.</div>
+          </div>
+          <div class="split-blok test-blok">
+            <div class="split-label">Dev 2 + 3 — Werken vooruit</div>
+            <div class="k-tekst">Fase 3 start direct: F&amp;G webshop frontend (Dev 2) en webshop backend + POS koppeling (Dev 3).</div>
+          </div>
+        </div>
+        <div style="margin-top:0.8rem;font-size:0.78rem;color:var(--tekst-dim);font-family:'Arial',sans-serif;">
+          → <strong style="color:var(--blauw);">Bewijs:</strong> Als horeca-systeem stabiel is, draait Foods &amp; Goods op dag 1 op een bewezen fundament.
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="fase-blok parallel">
+      <div class="fase-nr-blok"><div class="fase-nr-num">3</div></div>
+      <div class="fase-inhoud">
+        <div class="fase-kop">
+          <div class="fase-naam">Foods &amp; Goods Webshop + POS</div>
+          <span class="tag parallel-tag">Parallel aan 2B</span>
+          <span class="tag" style="background:rgba(201,76,76,0.12);color:#e07a7a;border:1px solid rgba(201,76,76,0.3);">Deadline sept</span>
+        </div>
+        <div class="fase-meta-lijn">Bouw start: 1 juni 2026 (parallel aan 2B) → ~15 augustus 2026 &nbsp;·&nbsp; 2 devs (start), 3 devs (vanaf 20 juni)</div>
+        <ul class="fase-lijst">
+          <li>B2C webshop met postcodefilter voor verse producten IJburg</li>
+          <li>B2B groothandel portaal voor zakelijke afnemers</li>
+          <li>Koppeling met voorraadsysteem (uit fase 2 — bewezen)</li>
+          <li>POS integratie: Valk Solutions ASPOS</li>
+          <li>Bezorgzone specificatie IJburg + omgeving</li>
+          <li>Orderverwerking + fulfilment workflow</li>
+        </ul>
+        <div class="fase-rens-box">
+          <span>Wat Rens moet leveren vóór 1 juni:</span>
+          Productcatalogus (SKU, EAN, naam, prijs, foto's) &nbsp;·&nbsp;
+          Leverancierslijst &nbsp;·&nbsp;
+          Bezorgzone postcodes &nbsp;·&nbsp;
+          Logo + huisstijl Foods &amp; Goods (.svg/.ai) &nbsp;·&nbsp;
+          Supermarkt POS definitief kiezen (bel Valk Solutions: +31 348 431 490)
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 4 -->
+    <div class="fase-blok">
+      <div class="fase-nr-blok"><div class="fase-nr-num">4</div></div>
+      <div class="fase-inhoud">
+        <div class="fase-kop">
+          <div class="fase-naam">Volledig KPI Dashboard — Alle bedrijven</div>
+          <span class="tag later-tag">Start augustus</span>
+        </div>
+        <div class="fase-meta-lijn">1 augustus → 1 september 2026 &nbsp;·&nbsp; 1-2 developers &nbsp;·&nbsp; ~4 weken</div>
+        <ul class="fase-lijst">
+          <li>Totaaloverzicht: alle 11 bedrijven in één scherm</li>
+          <li>Clickthrough: holding → formule → vestiging</li>
+          <li>Dropdown per vestiging of per formule</li>
+          <li>Speakap SSO koppeling (inloggen via Speakap account)</li>
+          <li>KPI's: omzet, loonkosten % en €, uren, derving, cashflow</li>
+          <li>Vergelijking: vs target, vs vorige week, vs vorig jaar, eigen benchmark</li>
+          <li>Automatische rapporten: wekelijks, maandelijks, kwartaal, jaar</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FASE 5 -->
+    <div class="fase-blok later">
+      <div class="fase-nr-blok"><div class="fase-nr-num">5</div></div>
+      <div class="fase-inhoud">
+        <div class="fase-kop">
+          <div class="fase-naam">HR Systeem — Loket vervanger</div>
+          <span class="tag later-tag">Q4 2026</span>
+        </div>
+        <div class="fase-meta-lijn">Q4 2026 &nbsp;·&nbsp; 3 developers &nbsp;·&nbsp; 6-8 weken &nbsp;·&nbsp; <em style="color:var(--groen);">Eerder als bufferweek voor september gehaald wordt</em></div>
+        <ul class="fase-lijst">
+          <li>Daywise koppeling (Rens richt dit nu al zelf in)</li>
+          <li>Loonstroken maken + versturen</li>
+          <li>Jaaropgaven</li>
+          <li>Loonheffingen opgeven, verwerken en versturen</li>
+          <li>Betaalbatch lonen + loonheffingen</li>
+          <li>Onderscheid per filiaal</li>
+          <li>Shiftbase nabouwen (roosters, urenregistratie)</li>
+          <li>CAO-aanpassingen automatisch verwerken</li>
+          <li>Subsidie-optimalisatie per medewerker</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:1rem;font-size:0.78rem;padding:0.8rem 1rem;">
+          <strong>Bufferweek logica:</strong>
+          Als Fase 3 + 4 voor 1 september klaar zijn én er is een bufferweek beschikbaar,
+          starten we Fase 5 al vóór Q4. HR is bewust naar achteren geschoven om de september-deadline te beschermen.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TIJDLIJN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="tijdlijn">
+  <div class="sectie-label">05 — Overzicht</div>
+  <h2>Tijdlijn</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Van start tot supermarktopening. Alles loopt af op september 2026 — met buffer.
+  </p>
+
+  <div class="tijdlijn-balk">
+    <div class="tl-rij">
+      <div class="tl-maand">April</div>
+      <div class="tl-segment">
+        <div class="tl-blok f1">Fase 1 — Infra start (14 april)</div>
+      </div>
+    </div>
+    <div class="tl-rij">
+      <div class="tl-maand">Mei</div>
+      <div class="tl-segment">
+        <div class="tl-blok f1">Fase 1 klaar (~2 mei)</div>
+        <div class="tl-blok f2">Fase 2A — Horeca Bouw (5 mei)</div>
+      </div>
+    </div>
+    <div class="tl-rij">
+      <div class="tl-maand">Juni</div>
+      <div class="tl-segment">
+        <div class="tl-blok f2">Fase 2A klaar (~30 mei)</div>
+        <div class="tl-blok f2b">Fase 2B — Test (1 dev)</div>
+        <div class="tl-blok f3">Fase 3 — F&amp;G start (2 devs)</div>
+      </div>
+    </div>
+    <div class="tl-rij">
+      <div class="tl-maand">Juli</div>
+      <div class="tl-segment">
+        <div class="tl-blok f2b">Fase 2B klaar (~20 juni)</div>
+        <div class="tl-blok f3">Fase 3 — 3 devs vol gas</div>
+      </div>
+    </div>
+    <div class="tl-rij">
+      <div class="tl-maand">Augustus</div>
+      <div class="tl-segment">
+        <div class="tl-blok f3">Fase 3 klaar (~15 aug)</div>
+        <div class="tl-blok f4">Fase 4 — KPI Dashboard (1 aug)</div>
+      </div>
+    </div>
+    <div class="tl-rij">
+      <div class="tl-maand">September</div>
+      <div class="tl-segment">
+        <div class="tl-blok f4">Fase 4 klaar (1 sept)</div>
+        <div class="tl-blok deadline">Foods &amp; Goods IJburg OPEN</div>
+      </div>
+    </div>
+    <div class="tl-rij">
+      <div class="tl-maand">Q4 2026</div>
+      <div class="tl-segment">
+        <div class="tl-blok f5">Fase 5 — HR Systeem</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:2rem;">
+    <div class="kaart">
+      <div class="k-label goud-kleur">Buffer</div>
+      <div class="k-titel">~2-3 weken vóór deadline</div>
+      <div class="k-tekst">
+        Fase 3 klaar ~15 augustus. Foods &amp; Goods opent september.
+        Dat geeft 2-3 weken buffer voor testen, onboarding en eventuele fixes.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Parallel werken</div>
+      <div class="k-titel">3 developers = 2 tracks</div>
+      <div class="k-tekst">
+        Fase 2B test draait terwijl Fase 3 al gebouwd wordt.
+        Fase 4 start terwijl Fase 3 finishes. Maximale parallelisatie
+        zonder dat kwaliteit of stabiliteit lijdt.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label goud-kleur">Flexibel</div>
+      <div class="k-titel">HR eerder als buffer gehaald</div>
+      <div class="k-tekst">
+        Fase 5 (HR) staat gepland voor Q4. Als september gehaald wordt
+        met bufferweek → direct starten. HR is de laatste prioriteit maar hoeft niet te wachten als er ruimte is.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SYSTEMEN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="systemen">
+  <div class="sectie-label">06 — Technologie</div>
+  <h2>Systemen &amp; beslissingen</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Overzicht van alle technologische keuzes — definitief besloten en nog open.
+    Inclusief de huidige systemen van Rens en wat er mee gaat gebeuren.
+  </p>
+
+  <div class="divider"><span>Infrastructuur — definitief besloten</span></div>
+
+  <div class="grid-2">
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">✓ Besloten</div>
+      <div class="k-titel">Hostinger Cloud</div>
+      <div class="k-tekst">
+        Productie + staging VPS op Hostinger. Eerder overwogen: Hetzner — besloten voor Hostinger.
+        Iedere client krijgt eigen VPS/container — nooit gedeeld.
+        Inclusief VPN via Hostinger.
+      </div>
+    </div>
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">✓ Besloten</div>
+      <div class="k-titel">Synology NAS — Backup</div>
+      <div class="k-tekst">
+        Synology NAS als lokale backup-laag naast de cloud.
+        Hardware is al aanwezig. Koppeling wordt gebouwd in Fase 1.
+      </div>
+    </div>
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">✓ Besloten</div>
+      <div class="k-titel">Lightspeed Restaurant — Horeca POS</div>
+      <div class="k-tekst">
+        Kassasysteem voor Wings + Pizza Bakkers (alle vestigingen).
+        Hardware is al aanwezig (iPads + kassa). Alleen software wisselen.
+        Wij koppelen Lightspeed API in Fase 2A.
+      </div>
+    </div>
+    <div class="kaart" style="border-top:2px solid var(--oranje);">
+      <div class="k-label oranje-kleur">⏳ Nog bevestigen</div>
+      <div class="k-titel">Valk Solutions ASPOS — Supermarkt POS</div>
+      <div class="k-tekst">
+        Sterkste kandidaat voor Foods &amp; Goods. Specialty supermarkt heeft speciale eisen.
+        Offerte aanvragen: <strong>+31 348 431 490</strong>.
+        Rens moet dit besluit vóór 1 juni nemen.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Huidige systemen Rens — wat er mee gebeurt</span></div>
+
+  <table class="sys-tabel">
+    <thead>
+      <tr>
+        <th>Systeem</th>
+        <th>Huidig gebruik</th>
+        <th>Vervangen?</th>
+        <th>Actie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Exact Online</strong></td>
+        <td>Boekhouding</td>
+        <td class="status-later">Ja — toekomst</td>
+        <td>Fase 4/5: eigen systeem. Exports tijdelijk gebruiken voor koppeling.</td>
+      </tr>
+      <tr>
+        <td><strong>Loket</strong></td>
+        <td>HR / salarisadministratie</td>
+        <td class="status-later">Ja — Q4 2026</td>
+        <td>Fase 5: eigen HR systeem. Besparing €200-400/maand.</td>
+      </tr>
+      <tr>
+        <td><strong>Daywise</strong></td>
+        <td>HR contracten (wordt nu ingericht)</td>
+        <td class="status-koppelen">Nee — koppelen</td>
+        <td>Rens richt zelf in. Wij bouwen koppeling in Fase 5.</td>
+      </tr>
+      <tr>
+        <td><strong>Speakap</strong></td>
+        <td>Interne communicatie</td>
+        <td class="status-nee">Nee</td>
+        <td>Dashboard login VIA Speakap (SSO koppeling bouwen).</td>
+      </tr>
+      <tr>
+        <td><strong>Lightspeed</strong></td>
+        <td>Kassasysteem horeca</td>
+        <td class="status-nee">Nee (behouden)</td>
+        <td>API koppeling in Fase 2A. Behouden tot eigen POS klaar is (jaar 2).</td>
+      </tr>
+      <tr>
+        <td><strong>Shiftbase</strong></td>
+        <td>Personeelsplanning</td>
+        <td class="status-later">Ja — toekomst</td>
+        <td>Fase 5: nabouwen in eigen HR systeem.</td>
+      </tr>
+      <tr>
+        <td><strong>Power BI</strong></td>
+        <td>Rapportages (kassa-leverancier)</td>
+        <td class="status-ja">Ja — zelf bouwen</td>
+        <td>Fase 4: eigen KPI dashboard vervangt Power BI volledig.</td>
+      </tr>
+      <tr>
+        <td><strong>Outlook + WhatsApp</strong></td>
+        <td>Dagelijkse communicatie</td>
+        <td class="status-nee">Nee</td>
+        <td>Blijft. AI agent kan mail beantwoorden als toekomstige module (jaar 2).</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HOSTING MODEL -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="hosting">
+  <div class="sectie-label">07 — Infrastructuur aanpak</div>
+  <h2>Managed Hosting Model</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Besloten: wij kopen en beheren de servers. Clients betalen via factuur.
+    Wij houden altijd root-toegang — ook als er 's nachts iets misgaat.
+  </p>
+
+  <div class="hosting-diagram">
+    <div class="hosting-blok team-blok">
+      <div class="hb-icon">🔧</div>
+      <div class="hb-naam">Ons team</div>
+      <div class="hb-sub">Root-toegang altijd<br/>Servers in beheer<br/>Billing via factuur</div>
+    </div>
+    <div>
+      <div class="hosting-pijl" style="margin-bottom:0.5rem;">→</div>
+      <div style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;font-family:'Arial',sans-serif;color:var(--tekst-dim);text-align:center;">beheert</div>
+    </div>
+    <div>
+      <div class="hosting-blok" style="margin-bottom:1rem;">
+        <div class="hb-icon">🏪</div>
+        <div class="hb-naam">Rens — Holding</div>
+        <div class="hb-sub">Dedicated VPS<br/>Productie + staging<br/>Dashboard-toegang</div>
+      </div>
+      <div class="hosting-blok" style="opacity:0.6;">
+        <div class="hb-icon">🏪</div>
+        <div class="hb-naam">Toekomstige klanten</div>
+        <div class="hb-sub">Eigen VPS<br/>Nooit op gedeelde server</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">Voordeel 1</div>
+      <div class="k-titel">Geen afhankelijkheid bij problemen</div>
+      <div class="k-tekst">
+        Als er 's nachts iets kapot gaat, hoeven we niet te wachten op Rens die zijn wachtwoord stuurt.
+        Wij hebben root-toegang. Probleem gefixt voor de ochtend.
+      </div>
+    </div>
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">Voordeel 2</div>
+      <div class="k-titel">Simpele billing — één factuur</div>
+      <div class="k-tekst">
+        Hostinger kost €100-150/maand. Dat gaat in de factuur van Rens.
+        Geen aparte rekeningen, geen Rens die servers betaalt. Eén factuur, klaar.
+      </div>
+    </div>
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">Voordeel 3</div>
+      <div class="k-titel">Volledige isolatie per client</div>
+      <div class="k-tekst">
+        Rens staat nooit op een gedeelde server met andere klanten.
+        Financiële data van 11 BV's + 140+ medewerkers = eigen VPS.
+        Juridisch en AVG-technisch een verplichting.
+      </div>
+    </div>
+    <div class="kaart groen-rand">
+      <div class="k-label" style="color:var(--groen);">Voordeel 4</div>
+      <div class="k-titel">Data-eigendom gewaarborgd</div>
+      <div class="k-tekst">
+        In het contract: Rens blijft eigenaar van al zijn data.
+        Als hij ooit vertrekt, krijgt hij een volledige export.
+        AVG-verplichting én eerlijk zakendoen.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- KOSTEN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="kosten">
+  <div class="sectie-label">08 — Financiën</div>
+  <h2>Kosten &amp; tarieven</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Volledig overzicht: tarieven team, externe kosten, AI-infrastructuur.
+    Alles transparant in één factuur aan Rens.
+  </p>
+
+  <div class="divider"><span>Tarieven team</span></div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="kaart goud-rand">
+      <div class="k-label goud-kleur">Bouwfase — nu t/m september 2026</div>
+      <div class="k-titel" style="font-size:1.6rem;color:var(--goud);font-family:'Arial',sans-serif;">€5.500 <span style="font-size:0.9rem;color:var(--tekst-dim);">p.p. / maand</span></div>
+      <div class="k-tekst" style="margin-top:0.5rem;">
+        3 developers × €5.500 = <strong style="color:var(--wit);">€16.500/maand</strong><br/>
+        <br/>
+        Inclusief hosting: <strong style="color:var(--goud);">+€150/maand</strong><br/>
+        <strong>Totaal bouwfase: €16.650/maand</strong>
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label">Onderhoudsfase — na september 2026</div>
+      <div class="k-titel" style="font-size:1.6rem;color:var(--tekst-mid);font-family:'Arial',sans-serif;">€2.500 <span style="font-size:0.9rem;color:var(--tekst-dim);">p.p. / maand</span></div>
+      <div class="k-tekst" style="margin-top:0.5rem;">
+        3 developers × €2.500 = <strong style="color:var(--wit);">€7.500/maand</strong><br/>
+        <br/>
+        Inclusief hosting: <strong>+€150/maand</strong><br/>
+        <strong>Totaal onderhoud: €7.650/maand</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-bottom:2.5rem;">
+    <strong>Waarom €5.500 per persoon in de bouwfase?</strong><br/>
+    Fulltime werk — geen ruimte voor andere klanten. Brian en Kiriel verlaten gevestigde banen.
+    We bouwen iets wat vrijwel niemand nog doet: een AI-native holding platform.
+    Het onderhoudstarief na september (€2.500) is de compensatie voor die investering.
+  </div>
+
+  <div class="divider"><span>Externe maandkosten (na oplevering)</span></div>
+
+  <table class="kosten-tabel">
+    <thead>
+      <tr>
+        <th>Systeem</th>
+        <th>Kosten / maand</th>
+        <th>Opmerking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hostinger VPS (productie + staging)</td>
+        <td class="prijs-col">€50–150</td>
+        <td>In factuur team</td>
+      </tr>
+      <tr>
+        <td>Lightspeed Restaurant (5 locaties × €189)</td>
+        <td class="prijs-col">€945</td>
+        <td>Tot eigen POS klaar is</td>
+      </tr>
+      <tr>
+        <td>Supermarkt POS — Valk Solutions ASPOS</td>
+        <td class="prijs-col">€200–500</td>
+        <td>Offerte nog aan te vragen</td>
+      </tr>
+      <tr>
+        <td>Monitoring + backup tools</td>
+        <td class="prijs-col">€50</td>
+        <td>Uptime, alerting, logbeheer</td>
+      </tr>
+      <tr class="totaal-rij">
+        <td>Totaal extern (na oplevering)</td>
+        <td class="prijs-col">€1.245–1.645</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="divider"><span>AI-infrastructuur kosten</span></div>
+
+  <p style="font-family:'Arial',sans-serif;font-size:0.88rem;color:var(--tekst-mid);margin-bottom:1.5rem;max-width:600px;">
+    We gebruiken AI op twee manieren: als ontwikkeltool voor het bouwen van het platform (Claude Code)
+    en als productie-AI in Rens zijn platform (Claude API). Kosten zijn voorspelbaar en vallen mee.
+  </p>
+
+  <div class="grid-2" style="margin-bottom:1.5rem;">
+    <div class="kaart">
+      <div class="k-label">Claude Code — ontwikkeltool (3 developers)</div>
+      <table class="kosten-tabel" style="margin-top:0.8rem;">
+        <thead>
+          <tr><th>Plan</th><th>Per persoon</th><th>3 developers</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pro</td><td>$20</td><td>$60</td></tr>
+          <tr><td>Max 5x</td><td>$100</td><td>$300</td></tr>
+          <tr class="totaal-rij"><td><strong>Max 20x ← Onze keuze</strong></td><td class="prijs-col">$200</td><td class="prijs-col">$600/maand</td></tr>
+        </tbody>
+      </table>
+      <div class="k-tekst" style="margin-top:0.7rem;">
+        Max 20x is de enige veilige keuze voor intensieve bouw. Grotere codebase, meer parallelle sessies, meer context.
+        Max 5x bereikt zijn limiet bij zwaar gebruik.
+      </div>
+    </div>
+    <div class="kaart">
+      <div class="k-label">Claude API — productiegebruik Rens zijn platform</div>
+      <table class="kosten-tabel" style="margin-top:0.8rem;">
+        <thead>
+          <tr><th>Model</th><th>Gebruik</th><th>Geschat</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Claude Sonnet</td><td>Agent, analyses</td><td>~$40</td></tr>
+          <tr><td>Claude Haiku</td><td>Eenvoudige taken</td><td>~$13</td></tr>
+          <tr class="totaal-rij"><td><strong>Totaal API</strong><td></td><td class="prijs-col">~€50–60/maand</td></tr>
+        </tbody>
+      </table>
+      <div class="k-tekst" style="margin-top:0.7rem;">
+        Met prompt caching (automatisch ingebouwd) bespaar je 90% op herhaalde context.
+        Realistisch: €30-40/maand na optimalisatie.
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-bottom:1.5rem;">
+    <strong>Slimme model-routing — hoe we kosten laag houden zonder kwaliteitsverlies:</strong><br/><br/>
+    Elke vraag die binnenkomt wordt automatisch geclassificeerd:
+    eenvoudig (data formatteren, templates, logs) → <strong>Haiku</strong> (4× goedkoper).
+    Complex (financiële analyse, code, Rens zijn agent) → <strong>Sonnet</strong>.
+    Rens merkt geen enkel verschil in kwaliteit op de plekken die ertoe doen.
+    Dit staat in de presentatie als USP: <em>"wij kiezen het juiste model per taak."</em>
+  </div>
+
+  <div class="kaart" style="margin-bottom:1.5rem;">
+    <div class="k-label goud-kleur">Na september — lokale LLMs als besparing</div>
+    <div class="k-tekst" style="margin-top:0.3rem;">
+      T/m september: alles op Claude API. Na september evalueren we per taak of een lokaal model (Llama 8B via Ollama)
+      goedkoper kan zonder kwaliteitsverlies. Taken die daarvoor in aanmerking komen:
+      factuurclassificatie, POS-data koppelen, rapportsamenvattingen, routing.
+      <strong style="color:var(--wit);">Verwachte besparing: €60–90/maand</strong> op herhalende taken.
+      Claude blijft voor alle strategische en complexe taken.
+    </div>
+  </div>
+
+  <div class="divider"><span>Totaal maandoverzicht</span></div>
+
+  <table class="kosten-tabel">
+    <thead>
+      <tr><th>Post</th><th>Bouwfase (t/m sept)</th><th>Onderhoud (na sept)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Team (3 developers)</td>
+        <td class="prijs-col">€16.500</td>
+        <td class="prijs-col">€7.500</td>
+      </tr>
+      <tr>
+        <td>Hosting &amp; infrastructuur</td>
+        <td>€150</td>
+        <td>€150</td>
+      </tr>
+      <tr>
+        <td>Claude Code (ontwikkeltools)</td>
+        <td>€560</td>
+        <td>€560</td>
+      </tr>
+      <tr>
+        <td>Claude API (productie platform)</td>
+        <td>€50</td>
+        <td>€40</td>
+      </tr>
+      <tr>
+        <td>Lightspeed (5 vestigingen)</td>
+        <td>€945</td>
+        <td>→ €0 als eigen POS klaar is</td>
+      </tr>
+      <tr>
+        <td>Valk Solutions ASPOS</td>
+        <td>€300 (schatting)</td>
+        <td>€300</td>
+      </tr>
+      <tr class="totaal-rij">
+        <td>Totaal</td>
+        <td class="prijs-col">~€18.500</td>
+        <td class="prijs-col">~€8.550 → daalt naar €1.550 als SaaS wegvalt</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ROI -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="roi">
+  <div class="sectie-label">09 — Terugverdientijd</div>
+  <h2>De investering terugverdienen</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Dit is geen kostenpost — het is een investering die directe opbrengsten genereert.
+    Via besparing op tijd, op SaaS-abonnementen, én via nieuwe omzet.
+  </p>
+
+  <div class="roi-grid">
+    <div class="roi-kaart positief">
+      <div class="roi-label">Tijdsbesparing</div>
+      <div class="roi-getal">22u</div>
+      <div class="roi-tekst">Per week teruggewonnen. Rens 14u, Wendy 8u. Geen handmatig werk meer.</div>
+    </div>
+    <div class="roi-kaart positief">
+      <div class="roi-label">SaaS besparing jaar 1</div>
+      <div class="roi-getal">€600</div>
+      <div class="roi-tekst">Per maand zodra Exact Online (€150-300) en Loket (€200-400) worden afgesloten.</div>
+    </div>
+    <div class="roi-kaart positief">
+      <div class="roi-label">SaaS besparing jaar 2</div>
+      <div class="roi-getal">€3.000+</div>
+      <div class="roi-tekst">Per maand als eigen POS klaar is. Lightspeed valt weg: €945/maand besparing alleen al.</div>
+    </div>
+    <div class="roi-kaart positief">
+      <div class="roi-label">Webshop nieuwe omzet</div>
+      <div class="roi-getal">Direct</div>
+      <div class="roi-tekst">Foods &amp; Goods webshop genereert omzet die er nu niet is. B2C + B2B kanaal beiden actief.</div>
+    </div>
+    <div class="roi-kaart positief">
+      <div class="roi-label">Betere keuzes</div>
+      <div class="roi-getal">Dagelijks</div>
+      <div class="roi-tekst">Realtime KPI dashboard. Rens ziet iedere ochtend exact waar hij moet zijn. Minder verlies door blindspots.</div>
+    </div>
+    <div class="roi-kaart positief">
+      <div class="roi-label">Na jaar 2 — extern</div>
+      <div class="roi-getal">&lt;€200</div>
+      <div class="roi-tekst">Per maand aan externe software-kosten. Alleen hosting + backups. Alle andere SaaS is afgebouwd.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Vergelijking: extern SaaS vs. eigen platform</span></div>
+
+  <table class="vergelijk-tabel">
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Losse SaaS (huidige situatie)</th>
+        <th class="eigen-kol">Eigen platform (na bouw)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="aspect">Data-eigendom</td>
+        <td class="v-nee">Nee — data bij leverancier</td>
+        <td class="eigen-td v-ja">Ja — volledig eigendom Rens</td>
+      </tr>
+      <tr>
+        <td class="aspect">Koppelingen</td>
+        <td class="v-nee">Nee — alles handmatig</td>
+        <td class="eigen-td v-ja">Ja — alles geautomatiseerd</td>
+      </tr>
+      <tr>
+        <td class="aspect">Realtime inzicht</td>
+        <td class="v-nee">Nee — 1 maand achterstand</td>
+        <td class="eigen-td v-ja">Ja — dagelijks dashboard</td>
+      </tr>
+      <tr>
+        <td class="aspect">Schaalbaar (140+ medewerkers)</td>
+        <td class="v-deels">Deels — extra licentiekosten</td>
+        <td class="eigen-td v-ja">Ja — geen extra kosten per gebruiker</td>
+      </tr>
+      <tr>
+        <td class="aspect">Internationaal</td>
+        <td class="v-nee">Nee — NL-georiënteerd</td>
+        <td class="eigen-td v-ja">Ja — van meet af aan gebouwd voor schaal</td>
+      </tr>
+      <tr>
+        <td class="aspect">Franchise-ready</td>
+        <td class="v-nee">Nee</td>
+        <td class="eigen-td v-ja">Ja — toegang per franchisenemer</td>
+      </tr>
+      <tr>
+        <td class="aspect">Maandkosten jaar 2</td>
+        <td>€3.000-5.000+ SaaS</td>
+        <td class="eigen-td v-ja">&lt;€200 (alleen hosting)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACTIEPUNTEN RENS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="acties">
+  <div class="sectie-label">10 — Huiswerk</div>
+  <h2>Actiepunten voor Rens</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Dit zijn de punten die wij van Rens nodig hebben om op schema te blijven.
+    Per deadline gegroepeerd. Zonder deze input kunnen wij niet starten.
+  </p>
+
+  <div class="actie-blokken">
+
+    <div class="actie-groep">
+      <div class="actie-kop">
+        <span class="deadline-badge kritiek">Deadline: eind april 2026</span>
+        <div class="actie-kop-titel">Kritiek voor Fase 1 — Fundament &amp; Infrastructuur</div>
+      </div>
+      <div class="actie-items">
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>VPS account aanmaken bij Hostinger</strong> — of budget vrijmaken. Wij richten in, jij bent eigenaar van het account.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Domein + DNS toegang overdragen</strong> aan het team. Nodig voor alle services onder de juiste domeinen.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Lightspeed Restaurant bevestigen + actie</strong> — account aanmaken of huidige kassa opzeggen. Tijdlijn bepalen voor migratie.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Lijst alle locaties met adressen</strong> — voor Lightspeed licenties (per vestiging). Alle Wings + Pizza Bakkers filialen.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actie-groep">
+      <div class="actie-kop">
+        <span class="deadline-badge normaal">Deadline: half mei 2026</span>
+        <div class="actie-kop-titel">Kritiek voor Fase 2A — Horeca financieel dashboard</div>
+      </div>
+      <div class="actie-items">
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Exact Online export aanleveren</strong> — of login-toegang voor het team. Nodig voor financieel dashboard bouw.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Lijst bankrekeningen per entiteit</strong> — welk IBAN hoort bij welke BV/entiteit.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Contact boekhouder regelen</strong> voor afstemming financieel systeem. Eén afstemgesprek voldoende.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>BTW-structuur per entiteit aanleveren</strong> — welke BV valt onder welk BTW-regime.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actie-groep">
+      <div class="actie-kop">
+        <span class="deadline-badge normaal">Deadline: eind mei 2026</span>
+        <div class="actie-kop-titel">Kritiek voor Fase 3 — Foods &amp; Goods Webshop</div>
+      </div>
+      <div class="actie-items">
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Volledige productcatalogus</strong> — SKU, EAN, naam, prijs, categorie, foto's. Alle producten die in de webshop komen.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Leverancierslijst</strong> — namen, contactpersonen, betalingstermijnen, minimumafname.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Bezorgzone specificeren</strong> — welke postcodes vallen onder IJburg + omgeving voor bezorging?</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Logo + huisstijl Foods &amp; Goods</strong> — vectorbestand (.svg of .ai). Kleuren, lettertypen.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Openingstijden supermarkt</strong> — per dag, inclusief feestdagen.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Wat maakt Foods &amp; Goods speciaal?</strong> — Wat onderscheidt dit van een standaard supermarkt? Nodig voor POS-keuze en marketing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actie-groep">
+      <div class="actie-kop">
+        <span class="deadline-badge normaal">Deadline: eind mei 2026</span>
+        <div class="actie-kop-titel">Kritiek voor Fase 3 — B2B Groothandel Portaal</div>
+      </div>
+      <div class="actie-items">
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>B2B klantenlijst</strong> — bestaande zakelijke afnemers, bedrijfsnamen, adressen, contactpersonen.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Prijsafspraken per klantgroep</strong> — kortingspercentages, minimumafname, betalingstermijnen per segment.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actie-groep">
+      <div class="actie-kop">
+        <span class="deadline-badge later-d">Zo snel mogelijk — geen harde deadline</span>
+        <div class="actie-kop-titel">Overig — helpt ons beter werken</div>
+      </div>
+      <div class="actie-items">
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Valk Solutions bellen voor offerte</strong> — supermarkt POS. Tel: <strong>+31 348 431 490</strong>. Rens beslist, wij adviseren.</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Werkproces tekening aanleveren</strong> — Rens beloofde dit "van de week" in de intake. Hoe lopen de processen nu?</div>
+        </div>
+        <div class="actie-item">
+          <div class="check"></div>
+          <div><strong>Meeting plannen</strong> — Fabio regelt dit. Doelstelling: deze week of begin volgende week.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- OPEN PUNTEN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="open">
+  <div class="sectie-label">11 — Open punten</div>
+  <h2>Nog te besluiten</h2>
+  <div class="goud-lijn"></div>
+  <p class="sectie-intro">
+    Punten die open staan of nog verder uitgewerkt worden.
+  </p>
+  <div class="grid-3">
+    <div class="kaart oranje-rand">
+      <div class="k-label oranje-kleur">Open punt</div>
+      <div class="k-titel">Supermarkt POS definitief</div>
+      <div class="k-tekst">
+        Valk Solutions (ASPOS) is de sterkste kandidaat voor een specialty supermarkt.
+        Offerte aanvragen: +31 348 431 490. Rens beslist.
+      </div>
+    </div>
+    <div class="kaart oranje-rand">
+      <div class="k-label oranje-kleur">Open punt</div>
+      <div class="k-titel">Speakap SSO koppeling</div>
+      <div class="k-tekst">
+        Dashboard login via Speakap (SSO). Technisch uitzoeken in Fase 4.
+        Speakap heeft een API — haalbaarheid onderzoeken.
+      </div>
+    </div>
+    <div class="kaart oranje-rand">
+      <div class="k-label oranje-kleur">Open punt</div>
+      <div class="k-titel">Werkproces tekening Rens</div>
+      <div class="k-tekst">
+        Rens beloofde een tekening van zijn huidige werkprocessen.
+        Nodig voor goede automatisering in n8n workflows (Fase 6, jaar 2).
+      </div>
+    </div>
+    <div class="kaart oranje-rand">
+      <div class="k-label oranje-kleur">Open punt</div>
+      <div class="k-titel">Exact Online structuur</div>
+      <div class="k-tekst">
+        Exacte boekhouding-structuur (per BV, per periode) nodig voor financieel dashboard.
+        Te ontvangen via export of boekhouder.
+      </div>
+    </div>
+    <div class="kaart oranje-rand">
+      <div class="k-label oranje-kleur">Open punt</div>
+      <div class="k-titel">Hostinger plan kiezen</div>
+      <div class="k-tekst">
+        Welk Hostinger plan past bij de schaal van dit project?
+        Team doet aanbeveling na Fase 1 start.
+      </div>
+    </div>
+    <div class="kaart oranje-rand">
+      <div class="k-label oranje-kleur">Open punt</div>
+      <div class="k-titel">Eigen POS — Jaar 2</div>
+      <div class="k-tekst">
+        Internationaal inzetbare POS, franchise-ready. Staat op de roadmap voor jaar 2.
+        Vervangt Lightspeed (€945/maand besparing). Uitwerking later.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="f-logo">De Derde Linden Holding</div>
+  <div class="f-sub">Platform Presentatie — Vertrouwelijk</div>
+  <div class="f-sub">Team: Alex Severs · Fabio · Brian · Kiriel</div>
+  <div class="f-datum">Bijgewerkt: 13 april 2026 — na sparresessie</div>
+</footer>
+
+</body>
+</html>
