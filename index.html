@@ -889,6 +889,365 @@ footer strong { color: var(--text); }
   #top-nav, #side-nav, #progress-bar, .scroll-hint { display: none !important; }
   .slide { min-height: auto !important; page-break-inside: avoid; }
 }
+
+/* ── AGENT SECTION ── */
+#s-agent {
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(139,92,246,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(16,185,129,0.1) 0%, transparent 45%),
+    radial-gradient(ellipse at 60% 50%, rgba(37,99,235,0.06) 0%, transparent 60%);
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+.agent-hero {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+.agent-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.3);
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #a78bfa;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.agent-hero-eyebrow .pulse-dot {
+  width: 6px; height: 6px;
+  background: #a78bfa;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+.agent-hero-h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.agent-hero-h1 .grad-agent {
+  background: linear-gradient(135deg, #8b5cf6 0%, #60a5fa 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.agent-hero-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.agent-stat-pills {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.agent-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  padding: 0.55rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.agent-pill-val {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.agent-pill-val.p-purple { color: var(--purple); }
+.agent-pill-val.p-green  { color: var(--green); }
+.agent-pill-val.p-gold   { color: var(--gold); }
+.agent-pill-val.p-blue   { color: var(--accent2); }
+.agent-pill-lbl {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.agent-terminal {
+  background: #060a14;
+  border: 1px solid rgba(139,92,246,0.35);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 0 80px rgba(139,92,246,0.15), 0 0 0 1px rgba(139,92,246,0.08), 0 30px 80px rgba(0,0,0,0.6);
+}
+.terminal-header {
+  background: #0b1120;
+  border-bottom: 1px solid rgba(139,92,246,0.2);
+  padding: 0.8rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.t-dot { width: 11px; height: 11px; border-radius: 50%; margin-right: 2px; }
+.t-dot.t-red { background: #ef4444; }
+.t-dot.t-gold { background: #f59e0b; }
+.t-dot.t-green { background: #10b981; }
+.terminal-title { margin-left: 0.4rem; }
+.terminal-body {
+  padding: 1.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.83rem;
+  line-height: 1.85;
+}
+.t-line { display: flex; gap: 0.75rem; align-items: flex-start; }
+.t-prompt { color: var(--purple); font-weight: 700; flex-shrink: 0; }
+.t-user-text { color: #c8d8eb; }
+.t-agent-prefix { color: var(--green); font-weight: 700; flex-shrink: 0; }
+.t-agent-text { color: #8ecfb0; }
+.t-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 4px;
+  padding: 0 0.4rem;
+  font-size: 0.75rem;
+  color: var(--green);
+  margin-left: 0.5rem;
+}
+.t-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 4px;
+  padding: 0 0.4rem;
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin-left: 0.5rem;
+}
+.t-separator { border: none; border-top: 1px solid rgba(255,255,255,0.04); margin: 0.8rem 0; }
+.t-cursor {
+  display: inline-block;
+  width: 8px; height: 1em;
+  background: var(--purple);
+  opacity: 0.8;
+  animation: cursor-blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+@keyframes cursor-blink { 0%,100%{opacity:0.8} 50%{opacity:0} }
+.agent-day-section {
+  margin-bottom: 3rem;
+}
+.agent-day-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.agent-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  position: relative;
+}
+@media(max-width:900px) {
+  .agent-timeline { grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width:560px) {
+  .agent-timeline { grid-template-columns: 1fr 1fr; }
+}
+.agent-timeline::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+  z-index: 0;
+}
+.tl-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.tl-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.tl-item.tl-purple { border-top: 2px solid var(--purple); }
+.tl-item.tl-green  { border-top: 2px solid var(--green); }
+.tl-item.tl-gold   { border-top: 2px solid var(--gold); }
+.tl-item.tl-blue   { border-top: 2px solid var(--accent2); }
+.tl-item.tl-red    { border-top: 2px solid var(--red); }
+.tl-time {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace;
+}
+.tl-icon { font-size: 1.5rem; margin-bottom: 0.5rem; line-height: 1; }
+.tl-action {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.tl-detail {
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.tl-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+}
+.tl-badge.bg-purple { background: rgba(139,92,246,0.15); color: #a78bfa; }
+.tl-badge.bg-green  { background: rgba(16,185,129,0.15);  color: var(--green); }
+.tl-badge.bg-gold   { background: rgba(245,158,11,0.15);  color: var(--gold); }
+.tl-badge.bg-blue   { background: rgba(59,130,246,0.15);   color: var(--accent2); }
+.tl-badge.bg-red    { background: rgba(239,68,68,0.15);    color: var(--red); }
+.agent-power-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+@media(max-width:700px) { .agent-power-grid { grid-template-columns: 1fr; } }
+.power-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.6rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.power-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, var(--pc-color, rgba(139,92,246,0.06)), transparent 70%);
+  pointer-events: none;
+}
+.power-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(139,92,246,0.3);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+}
+.power-card.pc-purple { --pc-color: rgba(139,92,246,0.08); border-left: 3px solid var(--purple); }
+.power-card.pc-green  { --pc-color: rgba(16,185,129,0.07);  border-left: 3px solid var(--green); }
+.power-card.pc-gold   { --pc-color: rgba(245,158,11,0.07);  border-left: 3px solid var(--gold); }
+.power-card.pc-blue   { --pc-color: rgba(59,130,246,0.07);   border-left: 3px solid var(--accent2); }
+.power-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+.power-content {}
+.power-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+.power-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.power-desc strong { color: var(--text); font-weight: 600; }
+.power-example {
+  margin-top: 0.65rem;
+  font-size: 0.72rem;
+  font-family: 'Courier New', monospace;
+  color: #8ecfb0;
+  background: rgba(16,185,129,0.06);
+  border: 1px solid rgba(16,185,129,0.15);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+}
+.agent-impact-bar {
+  background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(16,185,129,0.08));
+  border: 1px solid rgba(139,92,246,0.25);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.agent-impact-text {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 540px;
+}
+.agent-impact-text strong { color: var(--white); font-weight: 700; }
+.agent-impact-stats {
+  display: flex;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+.agent-impact-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.agent-impact-badge .val {
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.agent-impact-badge .val.v-purple { color: var(--purple); }
+.agent-impact-badge .val.v-green  { color: var(--green); }
+.agent-impact-badge .val.v-gold   { color: var(--gold); }
+.agent-impact-badge .lbl {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
 </style>
 </head>
 <body>
@@ -904,7 +1263,7 @@ footer strong { color: var(--text); }
 <!-- SIDE NAV DOTS -->
 <div id="side-nav">
   <div class="side-dot active" data-target="s-hero" data-label="Start"></div>
-  <div class="side-dot" data-target="s-platform" data-label="Alles op 1 plek"></div>
+  <div class="side-dot" data-target="s-agent" data-label="De Agent"></div>
   <div class="side-dot" data-target="s-fases" data-label="Fases"></div>
   <div class="side-dot" data-target="s-systemen" data-label="Systemen"></div>
   <div class="side-dot" data-target="s-kosten" data-label="Kosten"></div>
@@ -964,123 +1323,183 @@ footer strong { color: var(--text); }
   </div>
 </section>
 
-<!-- ═══════════════════ SLIDE 2 — HET PROBLEEM ═══════════════════ -->
-<!-- ═══════════════════ SLIDE 2 — ALLES OP 1 PLEK ═══════════════════ -->
-<section class="slide" id="s-platform" style="justify-content:flex-start; padding-top:7rem; padding-bottom:5rem; min-height:auto;">
+<!-- ═══════════════════ SLIDE — DE AGENT ═══════════════════ -->
+<section class="slide" id="s-agent">
   <div class="slide-inner">
-    <div class="section-eyebrow anim-up">Jouw holding — één platform</div>
-    <h2 class="section-title anim-up">Alles op één plek.<br>De agent doet de rest.</h2>
-    <div class="section-divider anim-up"></div>
 
-    <div class="platform-quote anim-up">
-      Elke ochtend weet jij precies hoe je er voor staat, waar je moet ingrijpen<br>en welke vestiging vandaag jouw aandacht nodig heeft —
-      <strong>zonder dat jij er iets voor hoeft te doen.</strong>
-    </div>
-
-    <div class="platform-split">
-
-      <!-- LINKS: WAT SAMENKOMT -->
-      <div>
-        <div class="platform-col-title anim-up">Wat samenkomt op één plek</div>
-        <div class="source-grid">
-          <div class="source-item anim-up">
-            <div class="source-icon">🍗</div>
-            <div>
-              <div class="source-label">Horeca</div>
-              <div class="source-sub">Wings + Pizza Bakkers</div>
-            </div>
-          </div>
-          <div class="source-item anim-up">
-            <div class="source-icon">🛒</div>
-            <div>
-              <div class="source-label">Supermarkt</div>
-              <div class="source-sub">Foods &amp; Goods B2C + B2B</div>
-            </div>
-          </div>
-          <div class="source-item anim-up">
-            <div class="source-icon">👥</div>
-            <div>
-              <div class="source-label">HR</div>
-              <div class="source-sub">Contracten, uren, loonsom</div>
-            </div>
-          </div>
-          <div class="source-item anim-up">
-            <div class="source-icon">💰</div>
-            <div>
-              <div class="source-label">Finance</div>
-              <div class="source-sub">Cashflow, facturen, marges</div>
-            </div>
-          </div>
-          <div class="source-item anim-up">
-            <div class="source-icon">🏢</div>
-            <div>
-              <div class="source-label">Vastgoed</div>
-              <div class="source-sub">Huur, kosten per locatie</div>
-            </div>
-          </div>
-          <div class="source-item highlight anim-up">
-            <div class="source-icon">+</div>
-            <div>
-              <div class="source-label">Nieuwe bedrijven</div>
-              <div class="source-sub">Automatisch erbij bij groei</div>
-            </div>
-          </div>
+    <!-- Hero headline -->
+    <div class="agent-hero anim-up">
+      <div class="agent-hero-eyebrow">
+        <span class="pulse-dot"></span>
+        Live — 24/7 actief voor jou
+      </div>
+      <h2 class="agent-hero-h1">
+        Jouw holding —<br>
+        <span class="grad-agent">één platform. De agent doet de rest.</span>
+      </h2>
+      <p class="agent-hero-sub">
+        Geen dashboard dat je moet openen. Geen rapporten die je moet afwachten.
+        De agent bewaakt alles, handelt zelf en komt naar <em>jou</em> toe.
+      </p>
+      <div class="agent-stat-pills">
+        <div class="agent-pill">
+          <span class="agent-pill-val p-purple">11+</span>
+          <span class="agent-pill-lbl">BV's simultaan</span>
         </div>
-        <div class="platform-hub anim-up">
-          Alles in jouw eigen database — op jouw eigen server
+        <div class="agent-pill">
+          <span class="agent-pill-val p-green">24/7</span>
+          <span class="agent-pill-lbl">beschikbaar</span>
+        </div>
+        <div class="agent-pill">
+          <span class="agent-pill-val p-gold">&lt;3 sec</span>
+          <span class="agent-pill-lbl">reactietijd</span>
+        </div>
+        <div class="agent-pill">
+          <span class="agent-pill-val p-blue">7+</span>
+          <span class="agent-pill-lbl">systemen gekoppeld</span>
+        </div>
+        <div class="agent-pill">
+          <span class="agent-pill-val p-green">€0</span>
+          <span class="agent-pill-lbl">extra personeel</span>
         </div>
       </div>
+    </div>
 
-      <!-- RECHTS: WAT DE AGENT DOET -->
-      <div>
-        <div class="platform-col-title anim-up">Wat het platform elke dag voor je doet</div>
-        <div class="scenario-list">
-          <div class="scenario-card morning anim-up">
-            <div class="scenario-icon">☀️</div>
-            <div class="scenario-body">
-              <div class="scenario-title">Elke ochtend om 8:00 via Telegram</div>
-              <div class="scenario-text">"Gisteren: Wings DH <em>€4.200</em>, Wings Rotterdam <em>€3.100</em>. Pizza Bakkers onder verwachting <em>(-18%)</em>. Foods &amp; Goods: <em>3 producten bijna op</em>."</div>
-            </div>
-          </div>
-          <div class="scenario-card stock anim-up">
-            <div class="scenario-icon">📦</div>
-            <div class="scenario-body">
-              <div class="scenario-title">Voorraad &amp; operaties automatisch</div>
-              <div class="scenario-text">"Zaterdag verwacht <em>40% meer bezoekers</em> op basis van vorig jaar — bestel extra pizzadeeg vóór vrijdag 12:00." Leverancier automatisch gecontacteerd bij lage voorraad.</div>
-            </div>
-          </div>
-          <div class="scenario-card finance anim-up">
-            <div class="scenario-icon">🧾</div>
-            <div class="scenario-body">
-              <div class="scenario-title">Finance zonder handmatig werk</div>
-              <div class="scenario-text">Eén factuur per maand per BV, automatisch gegenereerd. Subsidies per medewerker maximaal benut. BTW-aangifte klaar zodra jij hem nodig hebt.</div>
-            </div>
-          </div>
-          <div class="scenario-card hr anim-up">
-            <div class="scenario-icon">📋</div>
-            <div class="scenario-body">
-              <div class="scenario-title">HR zonder papierwerk</div>
-              <div class="scenario-text">Nieuwe medewerker ingevuld in Daywise → contract automatisch gegenereerd → CAO-aanpassingen en wetgeving automatisch verwerkt.</div>
-            </div>
-          </div>
-          <div class="scenario-card growth anim-up">
-            <div class="scenario-icon">📈</div>
-            <div class="scenario-body">
-              <div class="scenario-title">Groeien zonder extra overhead</div>
-              <div class="scenario-text">Nieuwe vestiging opent? Toevoegen → zelfde dashboard, zelfde alerts, zelfde agent. Vastgoedanalyse voor nieuwe locaties automatisch beschikbaar.</div>
-            </div>
-          </div>
-          <div class="scenario-card office anim-up">
-            <div class="scenario-icon">📬</div>
-            <div class="scenario-body">
-              <div class="scenario-title">Kantoor op de achtergrond</div>
-              <div class="scenario-text">Mail beantwoord, agenda beheerd, VPO's opgesteld — jij besluit, de agent voert uit. Huuroverzicht en risicoanalyse per locatie altijd beschikbaar.</div>
-            </div>
-          </div>
+    <!-- Terminal demo -->
+    <div class="agent-terminal anim-up">
+      <div class="terminal-header">
+        <div class="t-dot t-red"></div>
+        <div class="t-dot t-gold"></div>
+        <div class="t-dot t-green"></div>
+        <span class="terminal-title">Claude Agent — De Derde Linden Holding &nbsp;·&nbsp; Vandaag 07:14</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line">
+          <span class="t-agent-prefix">Agent&nbsp;→</span>
+          <span class="t-agent-text">Goedeochtend Rens. Gisteravond 22:00–02:00 gedraaid op alle locaties. Pizza Bakkers Arena loonsom 37%: <span class="t-alert">⚠ 7% boven target</span> — Elton is genotificeerd. Wings Rotterdam sterkste dag van de maand: +€4.200 t.o.v. maandgemiddelde. Foods &amp; Goods sla &amp; rucola onder minimumvoorraad — besteladvies klaargezet.</span>
+        </div>
+        <hr class="t-separator">
+        <div class="t-line">
+          <span class="t-prompt">Rens&nbsp;→</span>
+          <span class="t-user-text">Stuur Elton een bericht over de loonsom en plan een check-in voor vrijdag</span>
+        </div>
+        <div class="t-line">
+          <span class="t-agent-prefix">Agent&nbsp;→</span>
+          <span class="t-agent-text">Bericht verstuurd via Speakap. <span class="t-action">✓ verzonden</span> &nbsp;Check-in ingepland vrijdag 10:00. <span class="t-action">✓ kalender</span> &nbsp;Notitie opgeslagen in Pizza Bakkers vault.</span>
+        </div>
+        <hr class="t-separator">
+        <div class="t-line">
+          <span class="t-prompt">Rens&nbsp;→</span>
+          <span class="t-user-text">Vergelijk alle vestigingen afgelopen 30 dagen en maak een PDF</span>
+        </div>
+        <div class="t-line">
+          <span class="t-agent-prefix">Agent&nbsp;→</span>
+          <span class="t-agent-text">Klaar. 11 vestigingen — omzet, marge, loonsom %, transacties, derving. Wings DH hoogste marge (41%). Fitness One: 3e maand op rij dalend — trendsignaal bijgevoegd. PDF staat in je Telegram. <span class="t-action">✓ PDF verstuurd</span><span class="t-cursor"></span></span>
         </div>
       </div>
-
     </div>
+
+    <!-- Een dag met de agent — tijdlijn -->
+    <div class="agent-day-section anim-up">
+      <div class="agent-day-title">— Een dag met de agent —</div>
+      <div class="agent-timeline">
+        <div class="tl-item tl-purple">
+          <div class="tl-time">06:00</div>
+          <div class="tl-icon">☀️</div>
+          <div class="tl-action">Ochtendbrief</div>
+          <div class="tl-detail">Omzet gisteren, afwijkingen, agenda vandaag — in je Telegram vóórdat je opstaat</div>
+          <span class="tl-badge bg-purple">Automatisch</span>
+        </div>
+        <div class="tl-item tl-gold">
+          <div class="tl-time">10:30</div>
+          <div class="tl-icon">⚡</div>
+          <div class="tl-action">Loonsom alert</div>
+          <div class="tl-detail">Wings Breda over drempel — agent waarschuwt Marcello direct, jij hoeft niks te doen</div>
+          <span class="tl-badge bg-gold">Alert</span>
+        </div>
+        <div class="tl-item tl-green">
+          <div class="tl-time">13:00</div>
+          <div class="tl-icon">📦</div>
+          <div class="tl-action">Bestelling klaargezet</div>
+          <div class="tl-detail">Voorraad sla &amp; frisdrank te laag — agent heeft besteladvies klaar, jij keurt goed met één klik</div>
+          <span class="tl-badge bg-green">Actie</span>
+        </div>
+        <div class="tl-item tl-blue">
+          <div class="tl-time">17:45</div>
+          <div class="tl-icon">📊</div>
+          <div class="tl-action">Weekrapport</div>
+          <div class="tl-detail">"Hoe ziet de week eruit?" — agent geeft in 3 sec een volledig overzicht van alle 11 BV's</div>
+          <span class="tl-badge bg-blue">Op aanvraag</span>
+        </div>
+        <div class="tl-item tl-red">
+          <div class="tl-time">22:00</div>
+          <div class="tl-icon">🔒</div>
+          <div class="tl-action">Dagafsluiting</div>
+          <div class="tl-detail">Alle kassa's gesloten, dagcijfers vastgelegd, afwijkingen gemarkeerd — klaar voor morgen</div>
+          <span class="tl-badge bg-red">Automatisch</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power cards — wat de agent werkelijk kan -->
+    <div class="agent-power-grid">
+      <div class="power-card pc-purple anim-up">
+        <div class="power-icon">◈</div>
+        <div class="power-content">
+          <div class="power-title">Heel de holding in één oogopslag</div>
+          <div class="power-desc">Geen enkele software bewaakt <strong>11 BV's simultaan</strong> en trekt zelf conclusies over het geheel — horeca, supermarkt, vastgoed, groothandel tegelijk.</div>
+          <div class="power-example">→ "Welke locatie loopt achter dit kwartaal?" — antwoord in 3 sec</div>
+        </div>
+      </div>
+      <div class="power-card pc-green anim-up">
+        <div class="power-icon">⚡</div>
+        <div class="power-content">
+          <div class="power-title">Handelt — niet alleen rapporteert</div>
+          <div class="power-desc">De agent <strong>doet</strong>. Factuur aanmaken. Marcello notificeren. Bestelling klaarzetten. Beslissing vastleggen. Allemaal vanuit één Telegram-bericht.</div>
+          <div class="power-example">→ "Stuur factuur naar klant X en zet €2.400 in de boekhouding" ✓</div>
+        </div>
+      </div>
+      <div class="power-card pc-gold anim-up">
+        <div class="power-icon">🔮</div>
+        <div class="power-content">
+          <div class="power-title">Signaleert vóórdat het mis gaat</div>
+          <div class="power-desc">Geen maandrapportage die te laat komt. De agent herkent <strong>afwijkingen real-time</strong> — loonsom die oploopt, marge die daalt, personeel dat te weinig uren draait.</div>
+          <div class="power-example">→ Loonsom Pizza Bakkers +7% boven target → alert → ingegrepen ✓</div>
+        </div>
+      </div>
+      <div class="power-card pc-blue anim-up">
+        <div class="power-icon">∞</div>
+        <div class="power-content">
+          <div class="power-title">Nooit ziek. Nooit vrij. Nooit laat.</div>
+          <div class="power-desc">De enige medewerker die <strong>geen agenda heeft</strong> — en je op zondagochtend 07:00 een volledige holding-analyse geeft in 3 seconden. Altijd beschikbaar, altijd accuraat.</div>
+          <div class="power-example">→ 22 uur/week bespaard · Rens + Wendy vrij voor echt werk</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact bar -->
+    <div class="agent-impact-bar anim-up">
+      <div class="agent-impact-text">
+        <strong>Wat dit concreet oplevert:</strong> Rens en Wendy verspillen nu ~22 uur per week aan handmatig werk dat de agent automatisch afhandelt.
+        Dat is <strong>meer dan een fulltime functie</strong> die wegvalt — en een directeur die eindelijk de grip heeft die hij altijd wilde.
+        Geen inhuurkracht nodig. Geen extra salaris. Geen fouten door vermoeidheid.
+      </div>
+      <div class="agent-impact-stats">
+        <div class="agent-impact-badge">
+          <span class="val v-purple">22u</span>
+          <span class="lbl">besparing / week</span>
+        </div>
+        <div class="agent-impact-badge">
+          <span class="val v-green">€0</span>
+          <span class="lbl">extra personeel</span>
+        </div>
+        <div class="agent-impact-badge">
+          <span class="val v-gold">100%</span>
+          <span class="lbl">van jou</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1759,7 +2178,7 @@ function updateNav() {
 
 // ── SIDE DOT NAV ──
 const dots = document.querySelectorAll('.side-dot');
-const sections = ['s-hero','s-platform','s-fases','s-systemen','s-kosten','s-actie','s-roadmap','s-closing'];
+const sections = ['s-hero','s-agent','s-fases','s-systemen','s-kosten','s-actie','s-roadmap','s-closing'];
 
 dots.forEach(dot => {
   dot.addEventListener('click', () => {
