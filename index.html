@@ -547,93 +547,6 @@ body::after {
   color: var(--text);
 }
 
-/* ── FASE DETAIL LIJST (v1-stijl) ── */
-.fase-lijst {
-  list-style: none;
-  padding: 0;
-  margin: 0.75rem 0 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-.fase-lijst li {
-  font-size: 0.82rem;
-  color: var(--text);
-  padding-left: 1.1rem;
-  position: relative;
-  line-height: 1.5;
-}
-.fase-lijst li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent2);
-  font-weight: 700;
-}
-.fase-meta-lijn {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.01em;
-}
-.fase-rens-box {
-  background: rgba(37,99,235,0.07);
-  border: 1px solid rgba(37,99,235,0.2);
-  border-radius: 8px;
-  padding: 0.65rem 0.9rem;
-  font-size: 0.75rem;
-  color: var(--text);
-  margin-top: 0.85rem;
-  line-height: 1.6;
-}
-.fase-rens-box span {
-  display: block;
-  font-weight: 700;
-  color: var(--accent2);
-  margin-bottom: 0.3rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.bouw-test-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-}
-.split-blok {
-  border-radius: 8px;
-  padding: 0.75rem;
-  font-size: 0.78rem;
-}
-.bouw-blok {
-  background: rgba(37,99,235,0.07);
-  border: 1px solid rgba(37,99,235,0.2);
-}
-.test-blok {
-  background: rgba(16,185,129,0.07);
-  border: 1px solid rgba(16,185,129,0.2);
-}
-.split-label {
-  font-weight: 700;
-  font-size: 0.72rem;
-  margin-bottom: 0.4rem;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.bewijs-lijn {
-  margin-top: 0.75rem;
-  font-size: 0.76rem;
-  color: var(--muted);
-  padding-left: 0.75rem;
-  border-left: 2px solid var(--accent2);
-}
-@media (max-width: 600px) {
-  .bouw-test-split { grid-template-columns: 1fr; }
-}
-
 /* ── SYSTEMEN ── */
 #s-systemen {
   background: radial-gradient(ellipse at 60% 40%, rgba(139,92,246,0.07) 0%, transparent 60%);
@@ -1133,10 +1046,10 @@ footer strong { color: var(--text); }
         </div>
       </div>
       <div class="pillar anim-up">
-        <div class="pillar-icon">📊</div>
+        <div class="pillar-icon">🗄️</div>
         <div class="pillar-text">
-          <h4>Data eerst importeren</h4>
-          <p>Direct koppelen met bestaande systemen — niet wachten op nieuwe data. Historische data = betere AI-beslissingen vanaf dag 1.</p>
+          <h4>Eigen database — jouw data</h4>
+          <p>PostgreSQL op jouw eigen server. Niet langer data huren bij Lightspeed of Exact — jij bezit alles. Fundament voor eigen POS, AI analytics en elke toekomstige uitbreiding.</p>
         </div>
       </div>
       <div class="pillar anim-up">
@@ -1184,7 +1097,6 @@ footer strong { color: var(--text); }
 
     <div class="fases-grid">
 
-      <!-- FASE 1 -->
       <div class="fase-row anim-up">
         <div class="fase-num-circle f1">1</div>
         <div class="fase-card-body">
@@ -1192,165 +1104,117 @@ footer strong { color: var(--text); }
             <div class="fase-name">Fundament &amp; Infrastructuur</div>
             <div class="fase-tags">
               <span class="tag blue">Direct starten</span>
-              <span class="tag gray">2-3 weken</span>
+              <span class="tag gray">3-4 weken</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">14 april → ~2 mei 2026 &nbsp;·&nbsp; 3 developers, vol gas</div>
-          <div class="fase-trigger">Geen afhankelijkheden — dit is het fundament voor alles. We starten zodra DNS-toegang is overgedragen.</div>
-          <ul class="fase-lijst">
-            <li>VPS inrichten op Hostinger</li>
-            <li>VPN setup via Hostinger</li>
-            <li>Synology NAS koppeling als backup</li>
-            <li>Domeinen + DNS inrichten</li>
-            <li>Obsidian Vaults live (alle bedrijfsunits)</li>
-            <li>Claude AI agent volledig operationeel</li>
-            <li>Telegram bot stabiel voor Rens</li>
-            <li>Git repository structuur + CI/CD pipeline</li>
-            <li>Monitoring + alerts</li>
-          </ul>
-          <div class="fase-rens-box">
-            <span>Wat Rens levert vóór 14 april</span>
-            Hostinger account aanmaken &nbsp;·&nbsp; Domein + DNS toegang overdragen &nbsp;·&nbsp; Lightspeed account actie starten &nbsp;·&nbsp; Lijst alle locaties met adressen
+          <div class="fase-trigger">Trigger: geen afhankelijkheden — dit is het fundament voor alles wat volgt. We starten zodra we DNS-toegang hebben.</div>
+          <div style="margin: 0.8rem 0 0.6rem; background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05)); border: 1px solid rgba(99,102,241,0.3); border-radius: 0.75rem; padding: 0.9rem 1.1rem;">
+            <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: #818cf8; text-transform: uppercase; margin-bottom: 0.4rem;">Kernonderdeel — Eigen Database</div>
+            <div style="font-size: 0.82rem; color: #c7d2fe; line-height: 1.5;">
+              Nu <em>huurt</em> Rens zijn data bij Lightspeed, Exact en Loket. Wij zetten een <strong>PostgreSQL database op zijn eigen VPS</strong> — alle transacties, klanten, producten en personeel staan voortaan bij hemzelf. Dit maakt het eigen kassasysteem, AI analytics en elke toekomstige uitbreiding radicaal makkelijker.
+              <span style="display:block; margin-top: 0.35rem; font-weight: 700; color: #a5b4fc;">Van data huren → data bezitten.</span>
+            </div>
+          </div>
+          <div class="fase-chips">
+            <span class="chip">Hostinger KVM4 VPS</span>
+            <span class="chip">VPN setup</span>
+            <span class="chip">PostgreSQL database (eigen)</span>
+            <span class="chip">Dagelijkse backups (ingebouwd)</span>
+            <span class="chip">DNS + domeinen</span>
+            <span class="chip">Obsidian Vaults live</span>
+            <span class="chip">CI/CD pipeline</span>
+            <span class="chip">Monitoring + alerts</span>
+            <span class="chip">AI Agent via Telegram</span>
           </div>
         </div>
       </div>
 
-      <!-- FASE 2A -->
       <div class="fase-row anim-up">
-        <div class="fase-num-circle f2">2A</div>
+        <div class="fase-num-circle f2">2</div>
         <div class="fase-card-body">
           <div class="fase-top">
-            <div class="fase-name">Horeca Bouw — Wings + Pizza Bakkers</div>
+            <div class="fase-name">Financieel Dashboard + Horeca koppeling</div>
             <div class="fase-tags">
               <span class="tag green">Testfase horeca</span>
-              <span class="tag gray">~4 weken</span>
+              <span class="tag gray">~6 weken</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">5 mei → ~30 mei 2026 &nbsp;·&nbsp; 3 developers, vol gas</div>
-          <div class="fase-trigger">Start zodra fase 1 klaar + Lightspeed contract getekend. Waarom horeca eerst? We testen met échte data in een omgeving waar een fout geen catastrofale gevolgen heeft. Als het hier werkt, draait Foods &amp; Goods op dag 1 op een bewezen systeem.</div>
-          <ul class="fase-lijst">
-            <li>Lightspeed Restaurant koppeling (alle horeca-vestigingen)</li>
-            <li>Eigen voorraadsysteem horeca (Wings + Pizza Bakkers)</li>
-            <li>Financieel dashboard basis — omzet, kosten, marge per vestiging</li>
-            <li>KPI's: dagomzet, bezetting, gem. besteding, loonsom %</li>
-            <li>Rolgebaseerde toegang (Rens alles, Elton/Marcello hun deel)</li>
-          </ul>
-          <div class="fase-rens-box">
-            <span>Wat Rens levert vóór 1 mei</span>
-            Exact Online export of login-toegang &nbsp;·&nbsp; Lijst bankrekeningen per BV/entiteit &nbsp;·&nbsp; Contact boekhouder voor afstemming &nbsp;·&nbsp; BTW-structuur per entiteit
+          <div class="fase-trigger">Trigger: na fase 1 klaar + Lightspeed contract getekend. Waarom horeca eerst? We testen met échte data vóór de supermarkt live gaat. Bewijs dat het werkt = minder risico in september.</div>
+          <div class="fase-chips">
+            <span class="chip">Lightspeed API koppeling</span>
+            <span class="chip">Omzet/kosten/marges</span>
+            <span class="chip">KPI per vestiging</span>
+            <span class="chip">Dagelijkse dashboard</span>
+            <span class="chip">Exact Online import</span>
+            <span class="chip">Rolgebaseerde toegang</span>
           </div>
         </div>
       </div>
 
-      <!-- FASE 2B -->
-      <div class="fase-row anim-up">
-        <div class="fase-num-circle f2" style="border-color:rgba(16,185,129,0.5);font-size:0.9rem;">2B</div>
-        <div class="fase-card-body">
-          <div class="fase-top">
-            <div class="fase-name">Horeca Test &amp; Validatie</div>
-            <div class="fase-tags">
-              <span class="tag green">Parallel aan fase 3</span>
-              <span class="tag gray">~3 weken</span>
-            </div>
-          </div>
-          <div class="fase-meta-lijn">1 juni → ~20 juni 2026 &nbsp;·&nbsp; 1 dev test/fixt, 2 devs werken al door naar fase 3</div>
-          <div class="fase-trigger">Na fase 2A bouw. Terwijl 1 developer het horeca-systeem test en fixt, beginnen de andere 2 al met fase 3. Zo verliezen we geen tijd.</div>
-          <div class="bouw-test-split">
-            <div class="split-blok bouw-blok">
-              <div class="split-label">Dev 1 — Monitoren &amp; fixen</div>
-              Horeca systeem testen met echte data. Bugs fixen. KPI's valideren. Lightspeed-koppeling stabiel maken.
-            </div>
-            <div class="split-blok test-blok">
-              <div class="split-label">Dev 2 + 3 — Werken vooruit</div>
-              Fase 3 start direct: F&amp;G webshop frontend (Dev 2) en webshop backend + POS koppeling (Dev 3).
-            </div>
-          </div>
-          <div class="bewijs-lijn">
-            Bewijs: als horeca-systeem stabiel is, draait Foods &amp; Goods op dag 1 op een fundament dat al klopt.
-          </div>
-        </div>
-      </div>
-
-      <!-- FASE 3 -->
       <div class="fase-row anim-up">
         <div class="fase-num-circle f3">3</div>
         <div class="fase-card-body critical">
           <div class="fase-top">
-            <div class="fase-name">Foods &amp; Goods Webshop + POS</div>
+            <div class="fase-name">Webshop Foods &amp; Goods (B2C)</div>
             <div class="fase-tags">
               <span class="tag red">⚠ Harde deadline sept '26</span>
-              <span class="tag gray">~10 weken</span>
+              <span class="tag gray">~8 weken</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">Bouw start: 1 juni 2026 (parallel aan 2B) → ~15 augustus 2026 &nbsp;·&nbsp; 2 devs start, 3 devs vanaf 20 juni</div>
-          <div class="fase-trigger">Na fase 2 stabiel + productcatalogus van Rens ontvangen. <strong>Moet juli starten om september te halen.</strong> Supermarkt opent — webshop moet live zijn op openingsdag. Geen ruimte voor vertraging.</div>
-          <ul class="fase-lijst">
-            <li>B2C webshop met postcodefilter voor verse producten IJburg</li>
-            <li>B2B groothandel portaal voor zakelijke afnemers</li>
-            <li>Koppeling met voorraadsysteem (uit fase 2A — bewezen)</li>
-            <li>POS integratie: Valk Solutions ASPOS</li>
-            <li>Bezorgzone specificatie IJburg + omgeving</li>
-            <li>Orderverwerking + fulfilment workflow</li>
-          </ul>
-          <div class="fase-rens-box">
-            <span>Wat Rens levert vóór 1 juni</span>
-            Productcatalogus (SKU, EAN, naam, prijs, foto's) &nbsp;·&nbsp; Leverancierslijst &nbsp;·&nbsp; Bezorgzone postcodes &nbsp;·&nbsp; Logo + huisstijl Foods &amp; Goods (.svg/.ai) &nbsp;·&nbsp; POS definitief kiezen (bel Valk Solutions: +31 348 431 490)
+          <div class="fase-trigger">Trigger: na fase 2 stabiel + productcatalogus van Rens ontvangen. <strong>Moet juli starten om september te halen.</strong> Supermarkt opent — webshop moet live zijn op openingsdag.</div>
+          <div class="fase-chips">
+            <span class="chip">Webshop IJburg</span>
+            <span class="chip">Postcode-bezorgzone</span>
+            <span class="chip">Valk Solutions POS</span>
+            <span class="chip">Voorraadbeheer</span>
+            <span class="chip">Betalingen</span>
           </div>
         </div>
       </div>
 
-      <!-- FASE 4 -->
       <div class="fase-row anim-up">
         <div class="fase-num-circle f4">4</div>
         <div class="fase-card-body">
           <div class="fase-top">
-            <div class="fase-name">Volledig KPI Dashboard — Alle bedrijven</div>
+            <div class="fase-name">Groothandel B2B Portaal</div>
             <div class="fase-tags">
-              <span class="tag gold">Start augustus</span>
-              <span class="tag gray">~4 weken</span>
+              <span class="tag gold">Parallel aan fase 3</span>
+              <span class="tag gray">~6 weken</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">1 augustus → 1 september 2026 &nbsp;·&nbsp; 1-2 developers</div>
-          <div class="fase-trigger">Na fase 3 live — dan zijn alle 11 BV's actief en is de volledige dataset beschikbaar om zinvolle vergelijkingen te maken. Eerder bouwen = onvolledig dashboard.</div>
-          <ul class="fase-lijst">
-            <li>Totaaloverzicht: alle 11 bedrijven in één scherm</li>
-            <li>Clickthrough: holding → formule → vestiging</li>
-            <li>Speakap SSO koppeling (inloggen via Speakap account)</li>
-            <li>KPI's: omzet, loonkosten % en €, uren, derving, cashflow</li>
-            <li>Vergelijking: vs target, vs vorige week, vs vorig jaar</li>
-            <li>Automatische rapporten: wekelijks, maandelijks, kwartaal, jaar</li>
-            <li>Power BI volledig vervangen</li>
-          </ul>
+          <div class="fase-trigger">Trigger: parallel aan fase 3 — deelt dezelfde infrastructuur. B2B klanten bestellen via eigen portaal met klantspecifieke prijzen en betalingstermijnen.</div>
+          <div class="fase-chips">
+            <span class="chip">B2B bestelportaal</span>
+            <span class="chip">Klantgroep-prijzen</span>
+            <span class="chip">Minimumafname regels</span>
+            <span class="chip">Facturatie automatisch</span>
+          </div>
         </div>
       </div>
 
-      <!-- FASE 5 -->
       <div class="fase-row anim-up">
         <div class="fase-num-circle f5">5</div>
         <div class="fase-card-body">
           <div class="fase-top">
-            <div class="fase-name">HR Systeem — Loket vervanger</div>
+            <div class="fase-name">KPI Dashboard + HR Systeem</div>
             <div class="fase-tags">
-              <span class="tag blue">Q4 2026</span>
-              <span class="tag gray">6-8 weken</span>
+              <span class="tag blue">Na fase 3 live</span>
+              <span class="tag gray">~6 weken</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">Q4 2026 &nbsp;·&nbsp; 3 developers &nbsp;·&nbsp; <em style="color:var(--green);">Eerder als er bufferweek beschikbaar is na september</em></div>
-          <div class="fase-trigger">Na fase 3 + 4. HR bewust naar achteren verschoven om de september-deadline te beschermen. Als we september halen met een bufferweek, starten we direct. Groei van 60 naar 140+ medewerkers maakt dit urgent.</div>
-          <ul class="fase-lijst">
-            <li>Daywise koppeling (Rens richt dit nu al zelf in)</li>
-            <li>Loonstroken maken + versturen</li>
-            <li>Jaaropgaven + loonheffingen verwerken</li>
-            <li>Betaalbatch lonen + loonheffingen</li>
-            <li>Onderscheid per filiaal</li>
-            <li>Shiftbase nabouwen (roosters, urenregistratie)</li>
-            <li>CAO-aanpassingen automatisch verwerken</li>
-            <li>Subsidie-optimalisatie per medewerker</li>
-          </ul>
+          <div class="fase-trigger">Trigger: na fase 3 live — dan zijn alle 11 BV's actief en is de volledige dataset beschikbaar. Speakap SSO koppeling voor login. Loket + Shiftbase worden vervangen.</div>
+          <div class="fase-chips">
+            <span class="chip">Volledig KPI overzicht</span>
+            <span class="chip">Dagomzet/marge/loonsom%</span>
+            <span class="chip">Speakap SSO login</span>
+            <span class="chip">Power BI vervanger</span>
+            <span class="chip">Personeelsdossiers</span>
+            <span class="chip">Daywise koppeling</span>
+            <span class="chip">60 → 140+ medewerkers</span>
+          </div>
         </div>
       </div>
 
-      <!-- FASE 6 -->
       <div class="fase-row anim-up">
         <div class="fase-num-circle f6">6</div>
         <div class="fase-card-body">
@@ -1361,19 +1225,17 @@ footer strong { color: var(--text); }
               <span class="tag gray">~8 weken</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">Na september 2026 &nbsp;·&nbsp; Lokale LLMs (Ollama) op eigen VPS — 0 cloud AI kosten</div>
-          <div class="fase-trigger">Na de opening van Foods &amp; Goods. Dan is de data van alle operaties beschikbaar voor AI-analyse. Lokale LLMs (Ollama/Llama/Mistral) draaien op eigen VPS: 60-80% AI kostenbesparing, 100% AVG-proof, geen vendor lock-in.</div>
-          <ul class="fase-lijst">
-            <li>Omzetforecast per vestiging (AI op basis van historische data)</li>
-            <li>n8n automaties: facturen, personeelsmeldingen, voorraadherwaardering</li>
-            <li>Personeelsplanning AI — bezetting vs. verwachte drukte</li>
-            <li>Voorraadherwaardering op basis van verkooppatronen</li>
-            <li>Slimme model-routing: Haiku voor eenvoudig, Sonnet voor complex</li>
-          </ul>
+          <div class="fase-trigger">Trigger: na september opening — urgent maar minder kritiek dan webshop. Lokale LLMs (Ollama) draaien op eigen VPS — geen cloud AI kosten, 100% AVG-proof.</div>
+          <div class="fase-chips">
+            <span class="chip">Lokale LLMs (Ollama)</span>
+            <span class="chip">Omzetforecast</span>
+            <span class="chip">n8n automaties</span>
+            <span class="chip">Personeelsplanning AI</span>
+            <span class="chip">Voorraadherwaardering</span>
+          </div>
         </div>
       </div>
 
-      <!-- FASE 7 -->
       <div class="fase-row anim-up">
         <div class="fase-num-circle f7">7</div>
         <div class="fase-card-body">
@@ -1384,14 +1246,13 @@ footer strong { color: var(--text); }
               <span class="tag gray">Franchise-ready</span>
             </div>
           </div>
-          <div class="fase-meta-lijn">Jaar 2+ &nbsp;·&nbsp; Alleen als alle andere systemen stabiel zijn &nbsp;·&nbsp; Besparing: €945–2.000/maand</div>
-          <div class="fase-trigger">Alleen starten als alle vorige fases stabiel en bewezen zijn. Eigen POS = Lightspeed wegvallen, volledig eigenaarschap. Internationaal en franchise-ready — dit is het eindspel van de holding.</div>
-          <ul class="fase-lijst">
-            <li>Eigen kassasysteem (vervangt Lightspeed volledig)</li>
-            <li>Internationaal schaalbaar</li>
-            <li>Franchise module — eigen vestigingen én externe franchise-nemers</li>
-            <li>Geen externe POS licentiekosten meer</li>
-          </ul>
+          <div class="fase-trigger">Trigger: alleen als alle systemen stabiel zijn. Eigen POS = Lightspeed wegvallen (€945-2.000/maand besparing). Internationaal, franchise-ready — dit is het eindspel.</div>
+          <div class="fase-chips">
+            <span class="chip">Eigen kassasysteem</span>
+            <span class="chip">Internationaal</span>
+            <span class="chip">Franchise module</span>
+            <span class="chip">Geen Lightspeed meer</span>
+          </div>
         </div>
       </div>
 
