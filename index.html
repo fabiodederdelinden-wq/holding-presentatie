@@ -333,128 +333,108 @@ body::after {
   margin-bottom: 2rem;
 }
 
-/* ── PROBLEEM SECTION ── */
-#s-probleem {
-  background: radial-gradient(ellipse at 80% 20%, rgba(239,68,68,0.07) 0%, transparent 55%);
+/* ── PLATFORM SECTION ── */
+#s-platform {
+  background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 60%);
+  justify-content: flex-start;
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+  min-height: auto;
 }
-.probleem-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-.probleem-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+.platform-quote {
+  background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(139,92,246,0.08));
+  border: 1px solid rgba(37,99,235,0.25);
   border-radius: 14px;
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s, border-color 0.3s;
+  padding: 1.25rem 1.75rem;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
-.probleem-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-}
-.probleem-card.red::before { background: var(--red); }
-.probleem-card.gold::before { background: var(--gold); }
-.probleem-card.purple::before { background: var(--purple); }
-.probleem-card.blue::before { background: var(--accent2); }
-.probleem-num {
-  font-size: 2.5rem;
-  font-weight: 900;
-  line-height: 1;
-  margin-bottom: 0.4rem;
-  letter-spacing: -0.04em;
-}
-.probleem-num.red { color: var(--red); }
-.probleem-num.gold { color: var(--gold); }
-.probleem-num.purple { color: var(--purple); }
-.probleem-num.blue { color: var(--accent2); }
-.probleem-label { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; }
-.probleem-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
-.sys-chaos {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-}
-.sys-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.82rem;
-}
-.sys-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.sys-dot.red { background: var(--red); }
-.sys-dot.gold { background: var(--gold); }
-.sys-dot.green { background: var(--green); }
-.sys-item-name { color: var(--text); font-weight: 600; }
-.sys-item-status { color: var(--muted); font-size: 0.72rem; margin-left: auto; }
-
-/* ── STRATEGIE SECTION ── */
-#s-strategie {
-  background: radial-gradient(ellipse at 20% 80%, rgba(16,185,129,0.07) 0%, transparent 55%),
-              radial-gradient(ellipse at 80% 20%, rgba(37,99,235,0.07) 0%, transparent 55%);
-}
-.strategie-split {
+.platform-quote strong { color: var(--accent2); font-style: normal; }
+.platform-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin-bottom: 1.5rem;
+  align-items: start;
 }
-@media(max-width:768px) { .strategie-split { grid-template-columns: 1fr; } }
-.strat-box {
+@media(max-width:768px) { .platform-split { grid-template-columns: 1fr; } }
+.platform-col-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.source-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.source-item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.75rem;
-  position: relative;
-  overflow: hidden;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: border-color 0.25s;
 }
-.strat-box.featured {
-  border-color: rgba(16,185,129,0.4);
-  background: rgba(16,185,129,0.04);
+.source-item:hover { border-color: rgba(59,130,246,0.4); }
+.source-icon { font-size: 1.1rem; flex-shrink: 0; }
+.source-label { font-size: 0.8rem; font-weight: 700; color: var(--white); }
+.source-sub { font-size: 0.68rem; color: var(--muted); margin-top: 0.1rem; }
+.source-item.highlight { border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.04); }
+.platform-center-arrow {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.75rem;
+  color: var(--accent2);
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
-.strat-box-icon { font-size: 2rem; margin-bottom: 0.75rem; line-height: 1; }
-.strat-box-title { font-size: 1.05rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
-.strat-box-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-.strat-box-desc strong { color: var(--accent2); font-weight: 600; }
-.strat-box.featured .strat-box-desc strong { color: var(--green); }
-.strat-arrow {
-  position: absolute;
-  right: 1rem; top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  color: rgba(16,185,129,0.3);
-  display: none;
+.platform-hub {
+  background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(139,92,246,0.1));
+  border: 1px solid rgba(37,99,235,0.4);
+  border-radius: 12px;
+  padding: 0.85rem 1.2rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent2);
+  margin-top: 0.65rem;
+  letter-spacing: 0.04em;
 }
-.strat-pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.85rem;
+.scenario-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
-.pillar {
+.scenario-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1.1rem 1.25rem;
+  padding: 1rem 1.1rem;
   display: flex;
+  gap: 0.85rem;
   align-items: flex-start;
-  gap: 0.75rem;
+  transition: border-color 0.25s;
 }
-.pillar-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1.2; }
-.pillar-text h4 { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
-.pillar-text p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+.scenario-card:hover { border-color: rgba(59,130,246,0.35); }
+.scenario-card.morning { border-left: 3px solid var(--gold); }
+.scenario-card.stock { border-left: 3px solid var(--green); }
+.scenario-card.finance { border-left: 3px solid var(--accent2); }
+.scenario-card.hr { border-left: 3px solid var(--purple); }
+.scenario-card.growth { border-left: 3px solid var(--green); }
+.scenario-card.office { border-left: 3px solid var(--muted); }
+.scenario-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+.scenario-body {}
+.scenario-title { font-size: 0.82rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+.scenario-text { font-size: 0.75rem; color: var(--muted); line-height: 1.55; }
+.scenario-text em { color: var(--text); font-style: normal; font-weight: 500; }
 
 /* ── FASES ── */
 #s-fases {
@@ -924,8 +904,7 @@ footer strong { color: var(--text); }
 <!-- SIDE NAV DOTS -->
 <div id="side-nav">
   <div class="side-dot active" data-target="s-hero" data-label="Start"></div>
-  <div class="side-dot" data-target="s-probleem" data-label="Het Probleem"></div>
-  <div class="side-dot" data-target="s-strategie" data-label="De Strategie"></div>
+  <div class="side-dot" data-target="s-platform" data-label="Alles op 1 plek"></div>
   <div class="side-dot" data-target="s-fases" data-label="Fases"></div>
   <div class="side-dot" data-target="s-systemen" data-label="Systemen"></div>
   <div class="side-dot" data-target="s-kosten" data-label="Kosten"></div>
@@ -986,156 +965,121 @@ footer strong { color: var(--text); }
 </section>
 
 <!-- ═══════════════════ SLIDE 2 — HET PROBLEEM ═══════════════════ -->
-<section class="slide" id="s-probleem">
+<!-- ═══════════════════ SLIDE 2 — ALLES OP 1 PLEK ═══════════════════ -->
+<section class="slide" id="s-platform" style="justify-content:flex-start; padding-top:7rem; padding-bottom:5rem; min-height:auto;">
   <div class="slide-inner">
-    <div class="section-eyebrow anim-up">Het probleem</div>
-    <h2 class="section-title anim-up">Alles draait handmatig.<br>Dat kost tijd, geld en grip.</h2>
+    <div class="section-eyebrow anim-up">Jouw holding — één platform</div>
+    <h2 class="section-title anim-up">Alles op één plek.<br>De agent doet de rest.</h2>
     <div class="section-divider anim-up"></div>
-    <p class="section-sub anim-up">
-      Vandaag werken alle systemen los van elkaar. Geen enkele koppeling.
-      Elke export is handwerk. Elke rapportage is giswerk. Dat gaat veranderen.
-    </p>
 
-    <div class="probleem-cards">
-      <div class="probleem-card red anim-up">
-        <div class="probleem-num red">22u</div>
-        <div class="probleem-label">Per week verspild</div>
-        <div class="probleem-desc">14 uur Rens + 8 uur Wendy — elke week opnieuw aan handmatig werk dat geautomatiseerd kan worden.</div>
-      </div>
-      <div class="probleem-card gold anim-up">
-        <div class="probleem-num gold">0</div>
-        <div class="probleem-label">Koppelingen</div>
-        <div class="probleem-desc">Exact Online, Lightspeed, Daywise, Shiftbase — alles staat los. Geen enkele data stroomt automatisch.</div>
-      </div>
-      <div class="probleem-card purple anim-up">
-        <div class="probleem-num purple">7</div>
-        <div class="probleem-label">Losse systemen</div>
-        <div class="probleem-desc">Exact Online, Loket, Daywise, Speakap, Lightspeed, Shiftbase, Power BI — elk met eigen login, factuur en silo.</div>
-      </div>
-      <div class="probleem-card blue anim-up">
-        <div class="probleem-num blue">€2K+</div>
-        <div class="probleem-label">Per maand aan tools</div>
-        <div class="probleem-desc">Maandelijkse abonnementen die in jaar 2 grotendeels wegvallen zodra we alles zelf bouwen.</div>
-      </div>
+    <div class="platform-quote anim-up">
+      Elke ochtend weet jij precies hoe je er voor staat, waar je moet ingrijpen<br>en welke vestiging vandaag jouw aandacht nodig heeft —
+      <strong>zonder dat jij er iets voor hoeft te doen.</strong>
     </div>
 
-    <div class="sys-chaos anim-up">
-      <div class="sys-item">
-        <div class="sys-dot red"></div>
-        <span class="sys-item-name">Exact Online</span>
-        <span class="sys-item-status">Loopt los</span>
-      </div>
-      <div class="sys-item">
-        <div class="sys-dot red"></div>
-        <span class="sys-item-name">Loket (HR)</span>
-        <span class="sys-item-status">Loopt los</span>
-      </div>
-      <div class="sys-item">
-        <div class="sys-dot gold"></div>
-        <span class="sys-item-name">Daywise</span>
-        <span class="sys-item-status">Wordt ingericht</span>
-      </div>
-      <div class="sys-item">
-        <div class="sys-dot red"></div>
-        <span class="sys-item-name">Shiftbase</span>
-        <span class="sys-item-status">Loopt los</span>
-      </div>
-      <div class="sys-item">
-        <div class="sys-dot gold"></div>
-        <span class="sys-item-name">Lightspeed</span>
-        <span class="sys-item-status">Definitief gekozen</span>
-      </div>
-      <div class="sys-item">
-        <div class="sys-dot red"></div>
-        <span class="sys-item-name">Power BI</span>
-        <span class="sys-item-status">Vervangen door eigen dashboard</span>
-      </div>
-      <div class="sys-item">
-        <div class="sys-dot red"></div>
-        <span class="sys-item-name">Speakap</span>
-        <span class="sys-item-status">Integreren via SSO</span>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="platform-split">
 
-<!-- ═══════════════════ SLIDE 3 — DE STRATEGIE ═══════════════════ -->
-<section class="slide" id="s-strategie">
-  <div class="slide-inner">
-    <div class="section-eyebrow anim-up">De aanpak</div>
-    <h2 class="section-title anim-up">Horeca als testomgeving.<br>Dan Foods &amp; Goods.</h2>
-    <div class="section-divider anim-up"></div>
-    <p class="section-sub anim-up">
-      We beginnen niet met de supermarkt — die deadline staat vast. We bouwen en testen eerst op horeca,
-      waar de data al aanwezig is. Bewezen systeem = veilige lancering september.
-    </p>
+      <!-- LINKS: WAT SAMENKOMT -->
+      <div>
+        <div class="platform-col-title anim-up">Wat samenkomt op één plek</div>
+        <div class="source-grid">
+          <div class="source-item anim-up">
+            <div class="source-icon">🍗</div>
+            <div>
+              <div class="source-label">Horeca</div>
+              <div class="source-sub">Wings + Pizza Bakkers</div>
+            </div>
+          </div>
+          <div class="source-item anim-up">
+            <div class="source-icon">🛒</div>
+            <div>
+              <div class="source-label">Supermarkt</div>
+              <div class="source-sub">Foods &amp; Goods B2C + B2B</div>
+            </div>
+          </div>
+          <div class="source-item anim-up">
+            <div class="source-icon">👥</div>
+            <div>
+              <div class="source-label">HR</div>
+              <div class="source-sub">Contracten, uren, loonsom</div>
+            </div>
+          </div>
+          <div class="source-item anim-up">
+            <div class="source-icon">💰</div>
+            <div>
+              <div class="source-label">Finance</div>
+              <div class="source-sub">Cashflow, facturen, marges</div>
+            </div>
+          </div>
+          <div class="source-item anim-up">
+            <div class="source-icon">🏢</div>
+            <div>
+              <div class="source-label">Vastgoed</div>
+              <div class="source-sub">Huur, kosten per locatie</div>
+            </div>
+          </div>
+          <div class="source-item highlight anim-up">
+            <div class="source-icon">+</div>
+            <div>
+              <div class="source-label">Nieuwe bedrijven</div>
+              <div class="source-sub">Automatisch erbij bij groei</div>
+            </div>
+          </div>
+        </div>
+        <div class="platform-hub anim-up">
+          Alles in jouw eigen database — op jouw eigen server
+        </div>
+      </div>
 
-    <div class="strategie-split">
-      <div class="strat-box anim-left">
-        <div class="strat-box-icon">🍕</div>
-        <div class="strat-box-title">Fase 1-2: Horeca als testbed</div>
-        <div class="strat-box-desc">
-          Wings Paradise, Pizza Bakkers en Wings Reguliers draaien al.
-          <strong>Echte transactiedata, echte medewerkers, echte processen.</strong>
-          We bouwen en valideren hier — niet op papier, maar in productie.
-          Als het hier werkt, werkt het overal.
+      <!-- RECHTS: WAT DE AGENT DOET -->
+      <div>
+        <div class="platform-col-title anim-up">Wat het platform elke dag voor je doet</div>
+        <div class="scenario-list">
+          <div class="scenario-card morning anim-up">
+            <div class="scenario-icon">☀️</div>
+            <div class="scenario-body">
+              <div class="scenario-title">Elke ochtend om 8:00 via Telegram</div>
+              <div class="scenario-text">"Gisteren: Wings DH <em>€4.200</em>, Wings Rotterdam <em>€3.100</em>. Pizza Bakkers onder verwachting <em>(-18%)</em>. Foods &amp; Goods: <em>3 producten bijna op</em>."</div>
+            </div>
+          </div>
+          <div class="scenario-card stock anim-up">
+            <div class="scenario-icon">📦</div>
+            <div class="scenario-body">
+              <div class="scenario-title">Voorraad &amp; operaties automatisch</div>
+              <div class="scenario-text">"Zaterdag verwacht <em>40% meer bezoekers</em> op basis van vorig jaar — bestel extra pizzadeeg vóór vrijdag 12:00." Leverancier automatisch gecontacteerd bij lage voorraad.</div>
+            </div>
+          </div>
+          <div class="scenario-card finance anim-up">
+            <div class="scenario-icon">🧾</div>
+            <div class="scenario-body">
+              <div class="scenario-title">Finance zonder handmatig werk</div>
+              <div class="scenario-text">Eén factuur per maand per BV, automatisch gegenereerd. Subsidies per medewerker maximaal benut. BTW-aangifte klaar zodra jij hem nodig hebt.</div>
+            </div>
+          </div>
+          <div class="scenario-card hr anim-up">
+            <div class="scenario-icon">📋</div>
+            <div class="scenario-body">
+              <div class="scenario-title">HR zonder papierwerk</div>
+              <div class="scenario-text">Nieuwe medewerker ingevuld in Daywise → contract automatisch gegenereerd → CAO-aanpassingen en wetgeving automatisch verwerkt.</div>
+            </div>
+          </div>
+          <div class="scenario-card growth anim-up">
+            <div class="scenario-icon">📈</div>
+            <div class="scenario-body">
+              <div class="scenario-title">Groeien zonder extra overhead</div>
+              <div class="scenario-text">Nieuwe vestiging opent? Toevoegen → zelfde dashboard, zelfde alerts, zelfde agent. Vastgoedanalyse voor nieuwe locaties automatisch beschikbaar.</div>
+            </div>
+          </div>
+          <div class="scenario-card office anim-up">
+            <div class="scenario-icon">📬</div>
+            <div class="scenario-body">
+              <div class="scenario-title">Kantoor op de achtergrond</div>
+              <div class="scenario-text">Mail beantwoord, agenda beheerd, VPO's opgesteld — jij besluit, de agent voert uit. Huuroverzicht en risicoanalyse per locatie altijd beschikbaar.</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="strat-box featured anim-right">
-        <div class="strat-box-icon">🏪</div>
-        <div class="strat-box-title">Fase 3+: Foods &amp; Goods — harde deadline</div>
-        <div class="strat-box-desc">
-          <strong>September 2026 is niet onderhandelbaar.</strong>
-          De supermarkt opent — webshop + B2B portaal moeten live zijn.
-          Omdat het systeem al bewezen is op horeca, is het risico minimaal.
-          Zo draaien beide formules op hetzelfde fundament.
-        </div>
-      </div>
-    </div>
 
-    <div class="strat-pillars">
-      <div class="pillar anim-up">
-        <div class="pillar-icon">🧠</div>
-        <div class="pillar-text">
-          <h4>Lokale AI (LLMs)</h4>
-          <p>Ollama + Llama/Mistral op eigen VPS. 60-80% kostenbesparing vs. cloud AI. AVG-proof — data verlaat nooit het systeem.</p>
-        </div>
-      </div>
-      <div class="pillar anim-up">
-        <div class="pillar-icon">🗄️</div>
-        <div class="pillar-text">
-          <h4>Eigen database — jouw data</h4>
-          <p>PostgreSQL op jouw eigen server. Niet langer data huren bij Lightspeed of Exact — jij bezit alles. Fundament voor eigen POS, AI analytics en elke toekomstige uitbreiding.</p>
-        </div>
-      </div>
-      <div class="pillar anim-up">
-        <div class="pillar-icon">🔐</div>
-        <div class="pillar-text">
-          <h4>Speakap SSO</h4>
-          <p>Rens logt in via zijn Speakap-account. Rolgebaseerd — elke manager ziet alleen zijn deel.</p>
-        </div>
-      </div>
-      <div class="pillar anim-up">
-        <div class="pillar-icon">🌍</div>
-        <div class="pillar-text">
-          <h4>Franchise-ready</h4>
-          <p>Internationaal schaalbaar. POS-systeem (fase 7) draait op eigen servers — geen licentiekosten meer na jaar 2.</p>
-        </div>
-      </div>
-      <div class="pillar anim-up">
-        <div class="pillar-icon">⚡</div>
-        <div class="pillar-text">
-          <h4>Intern alles aanschaffen</h4>
-          <p>Server, cloud, tools — wij kopen alles in. Maandelijks factureren aan Holding. Kostenpost wordt investering.</p>
-        </div>
-      </div>
-      <div class="pillar anim-up">
-        <div class="pillar-icon">🤖</div>
-        <div class="pillar-text">
-          <h4>n8n Automaties</h4>
-          <p>Workflows die zichzelf runnen — facturen, personeelsmeldingen, voorraadherwaardering. 22 uur/week → 0.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1753,7 +1697,7 @@ function updateNav() {
 
 // ── SIDE DOT NAV ──
 const dots = document.querySelectorAll('.side-dot');
-const sections = ['s-hero','s-probleem','s-strategie','s-fases','s-systemen','s-kosten','s-actie','s-roadmap','s-closing'];
+const sections = ['s-hero','s-platform','s-fases','s-systemen','s-kosten','s-actie','s-roadmap','s-closing'];
 
 dots.forEach(dot => {
   dot.addEventListener('click', () => {
